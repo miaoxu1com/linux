@@ -34,4 +34,6 @@ cd /mnt/gentoo
 tar -xvf stage*.tar
 使用默认配置安装
 
+切换到目标系统编译安装内核, 进行预安装工作
+
 
