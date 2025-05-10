@@ -90,5 +90,25 @@ swap+efi+root
 - systemctl  restart sshd
 - rc-service sshd start
 - 习惯那里一个就用那个
-
+- cd /mnt/gentoo 
+- 从https://www.gentoo.org/downloads/#other-arches 获取sate下载连接wget 下载连接进行下载
+- 跳过stage文件校验
+- stage 文件就是完整的系统文件，在gentoo下解压缩后
+- stage配置编译选项默认即可
+- tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+- cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+- 如果使用官方Gentoo install镜像，这一步可以被简化为 arch-chroot /mnt/gentoo，相当于官网进入新环境  chroot /mnt/gentoo /bin/bash 这一步
+- source /etc/profile
+- export PS1="(chroot) ${PS1}"
+- UEFI 系统
+- mkdir /efi
+- mount /dev/sda1 /efi
+- 配置 Portage 包管理器
+- emerge-webrsync
+- emerge --sync
+- 跳过阅读新闻条目这个就是更新公告没啥用
+- eselect profile list
+- 一般默认就是准确的
+- eselect profile set 22
+- eselect profile list 再次查看设置后的配置
 
