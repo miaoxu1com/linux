@@ -13,25 +13,25 @@ https://blog.csdn.net/hhc550056259/article/details/123916999
 
 - 然后参考官方文档手动配置网络
 - 检查 ip route 默认网关是否和配置的vmnat8一致
-不一致使用命令改为一致
+- 不一致使用命令改为一致
 ip route add default via 192.168.0.1
 
-查看ip地址和vmnat8网段一致
-ip addr 显示ip地址
+- 查看ip地址和vmnat8网段一致
+- ip addr 显示ip地址
 
-ip link 查看网卡接口，不显示ip地址，只显示网络接口
+- ip link 查看网卡接口，不显示ip地址，只显示网络接口
 
 
 ping  114.114.114.114 有时ping不同可以多一个223.5.5.5
 ping 223.5.5.5
 
-然后配置nameserver 223.5.5.5  
+- 然后配置nameserver 223.5.5.5  
 /etc/resolv.conf
 
 
-系统安装的大致过程都一样
+- 系统安装的大致过程都一样
 
-启动到live系统
+启动到live系统 live是带gui的 桌面系统  minalios 是最小化的在线安装
 root登录,live系统都会有提示语
 修改root密码
 passwd root
