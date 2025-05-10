@@ -112,3 +112,66 @@ swap+efi+root
 - eselect profile set 22
 - eselect profile list 再次查看设置后的配置
 
+- 打开https://mirrors.ustc.edu.cn/gentoo/releases 选择和eselect 一样版本的 路径https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64
+- nano /etc/portage/binrepos.conf/gentoobinhost.conf sync-uri值替换为 https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64
+- nano /etc/portage/make.conf 修改配置文件 安装程序默认优先使用二进制包
+- # Appending getbinpkg to the list of values within the FEATURES variable
+- FEATURES="${FEATURES} getbinpkg"
+- # Require signatures
+- FEATURES="${FEATURES} binpkg-request-signature"
+- getuto 生成密钥环 portage USE变量配置不想配置默认即可
+- nano /etc/portage/make.conf  中配置  当通过编译方式安装软件时编译项 USE中排出了桌面环境 因为用的是无桌面安装的
+- USE="-X -gtk -gnome -qt5 -kde"
+- 配置portage CPU_FLAGS_* 默认也可以
+-  emerge --ask --oneshot app-portage/cpuid2cpuflags
+- cpuid2cpuflags
+- echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
+- 配置安装许可协议
+- 先查看当前协议
+- portageq envvar ACCEPT_LICENSE
+- 如何在系统范围接受 ACCEPT_LICENSE 许可证示例
+- nano /etc/portage/make.conf
+- 添加 ACCEPT_LICENSE="-* @FREE @BINARY-REDISTRIBUTABLE"
+- 更新@world集合
+- emerge --ask --verbose --update --deep --newuse --getbinpkg @world
+- 清理包数据库过时的软件包元信息
+- emerge --ask --pretend --depclean
+- emerge --ask --depclean
+- 查看可用时区
+- ls -l /usr/share/zoneinfo/Asia
+- 设置时区为上海
+- ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+- 查看可用的区域设置
+- cat  /usr/share/i18n/SUPPORTED
+- 设置可用区域
+- nano /etc/locale.gen
+- 添加中文区域
+- en_US.UTF-8 UTF-8
+- zh_CN.UTF-8 UTF-8
+- zh_CN.GBK GBK
+- 生成区域文件
+- locale-gen
+- 设定系统级别的区域设置
+- eselect locale list
+- 列出可用区域文件
+- eselect locale list
+- 设置本地区域文件
+- eselect locale set 6
+- 也可以手动编辑，在systemd stage中是/etc/locale.conf
+- cat /etc/locale.conf
+- 重新加载环境更新区域
+- env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+- 大多数无线网卡和 GPU 需要固件才能运行，固件安装
+- emerge --ask sys-kernel/linux-firmware
+- 添加引导配置
+- 注意方式1和方式2这能一种不能同时用不要同时安装会报错
+- 方式1
+- echo "sys-kernel/installkernel grub" >> /etc/portage/package.use/installkernel
+- emerge --ask sys-kernel/installkernel
+- 方式2
+- tee -a /etc/portage/package.use/systemd <<EOF
+sys-apps/systemd boot
+sys-kernel/installkernel systemd-boot
+EOF
+- emerge --ask sys-apps/systemd sys-kernel/installkernel
+  
