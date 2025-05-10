@@ -1,6 +1,6 @@
 - 安装手册/指导书
 https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Installation/zh-cn
-- 虚拟机安装  可以跳过引导盘制作、镜像校验、定制启动、启动参数相当于window安全启动或者高级启动
+- 虚拟机安装  可以跳过引导盘制作、镜像校验、定制启动、用户添加（默认都是用root更方便）、启动参数相当于window安全启动或者高级启动
 - adsl  wep  wifi 网络配置也可以跳过  因为虚拟机一般都是DHCP自动获取、网络代理也无需配置
 
 - 使用nat网络方式上网，需要把已经配置了外网的物理网卡共享给虚拟网卡vmnat8，注意不要把共享网络配反了，是把物理公网共享给虚拟网络，然后继续配置vmnat8 ip为vmnat8子网ip  
