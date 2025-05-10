@@ -41,7 +41,7 @@ PermitRootLogin yes
 - 启动ssh服务
 rc-service sshd start
 
--分区
+-分区并格式化文件系统
 - 常用分区工具
 - cfdisk 最简单
 - fdisk 纯命令行
