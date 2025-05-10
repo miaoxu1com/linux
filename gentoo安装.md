@@ -54,18 +54,18 @@ swap+efi+root
 - mkswap /dev/sda
 
 
-为分区应用文件系统
- 附注
-安装结束后，请确保在重新启动之前，为之后在手册中选择的文件系统 emerge 相应的用户空间组件软件包。在接近安装尾声时您将看到另一个提醒。
-在一个分区或卷上创建一个文件系统，这里有用于每一个可能的分区的工具。 单击下表中的文件系统名称，了解每个文件系统的更多信息：
+- 为分区应用文件系统
+- 附注
+- 安装结束后，请确保在重新启动之前，为之后在手册中选择的文件系统 emerge 相应的用户空间组件软件包。在接近安装尾声时您将看到另一个提醒。
+- 在一个分区或卷上创建一个文件系统，这里有用于每一个可能的分区的工具。 单击下表中的文件系统名称，了解每个文件系统的更多信息：
 
-文件系统	创建命令	是否包含在live环境中？	软件包
-btrfs	mkfs.btrfs	 是	sys-fs/btrfs-progs
-ext4	mkfs.ext4	 是	sys-fs/e2fsprogs
-f2fs	mkfs.f2fs	 是	sys-fs/f2fs-tools
-xfs	mkfs.xfs	 是	sys-fs/xfsprogs
-vfat	mkfs.vfat	 是	sys-fs/dosfstools
-NTFS	mkfs.ntfs	 是	sys-fs/ntfs3g
+- 文件系统	创建命令	是否包含在live环境中？	软件包
+- btrfs	mkfs.btrfs	 是	sys-fs/btrfs-progs
+- ext4	mkfs.ext4	 是	sys-fs/e2fsprogs
+- f2fs	mkfs.f2fs	 是	sys-fs/f2fs-tools
+- xfs	mkfs.xfs	 是	sys-fs/xfsprogs
+- vfat	mkfs.vfat	 是	sys-fs/dosfstools
+- NTFS	mkfs.ntfs	 是	sys-fs/ntfs3g
 
 
 - 挂载系统
