@@ -66,5 +66,10 @@ swap+efi+root
 - 使用默认配置安装
 
 - 切换到目标系统编译安装内核, 进行预安装工作
+- open-rc 和 system  是用来管理服务
+- 重启服务
+- systemctl  restart sshd
+- rc-service sshd start
+- 习惯那里一个就用那个
 
 
