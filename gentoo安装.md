@@ -50,12 +50,12 @@ rc-service sshd start
 - EFI 系统分区文件系统
 - EFI 系统分区（/dev/sda1）必须是 FAT32 格式：
 
-mkfs.vfat -F 32 /dev/sda1
+
 swap+efi+root
 - 格式化分区
-- mkfs.ext4  /dev/sda root
-- mkfs.vfat -F 32 /dev/sda  efi
-- mkswap /dev/sda
+- mkfs.xfs  /dev/sda3 root
+- mkfs.vfat -F 32 /dev/sda1
+- mkswap /dev/sda2  //格式化不需要挂载 激活即可
 
 
 - 为分区应用文件系统
@@ -76,9 +76,9 @@ swap+efi+root
 - 创建目标系统目录
 - mkdir --parents /mnt/gentoo  根目录
 - mkdir --parents /mnt/gentoo/efi
-- 在live系统中挂载系统到目标 系统目录
-- mount /mnt/gentoo /dev/sda
-- mount /mnt/gentoo/efi /dev/sda
+- 在live系统中挂载系统到目标 系统目录 sda3 是根目录分区 sda1是efi分区 挂载到对应的目录 
+- mount /mnt/gentoo /dev/sda3
+- mount /mnt/gentoo/efi /dev/sda1
 - 安装初始化程序stage3到目标系统
 - cd /mnt/gentoo
 - tar -xvf stage*.tar
