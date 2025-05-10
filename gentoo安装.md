@@ -47,6 +47,10 @@ rc-service sshd start
 - fdisk 纯命令行
 
 - 常用的分区方案
+- EFI 系统分区文件系统
+- EFI 系统分区（/dev/sda1）必须是 FAT32 格式：
+
+mkfs.vfat -F 32 /dev/sda1
 swap+efi+root
 - 格式化分区
 - mkfs.ext4  /dev/sda root
