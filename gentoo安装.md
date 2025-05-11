@@ -95,6 +95,27 @@ swap+efi+root
 - 跳过stage文件校验
 - stage 文件就是完整的系统文件，在gentoo下解压缩后
 - stage配置编译选项默认即可
+
+
+- 可能有用的东西：
+- MAKEOPTS="-j12"
+- GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
+- USE="-gtk -gnome qt6 qt5 gtk4 gtk3 gtk2 kde alsa X wayland vulkan fcitx dist-kernel dbus"
+- VIDEO_CARDS="amdgpu radeonsi"
+- ACCEPT_LICENSE="@FREE @BINARY-REDISTRIBUTABLE @EULA"
+- LINGUAS="en en_US zh zh_CN"
+- L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
+- GRUB_PLATFORMS="efi-64"
+
+- INPUT_METHOD=fcitx5
+- XIM=fcitx5
+- XIM_PROGRAM=fcitx5
+- GTK_IM_MODULE=fcitx5
+- QT_IM_MODULE=fcitx5
+- XMODIFIERS=@im=fcitx5
+- SDL_IM_MODULE=fcitx5
+
+
 - tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 - cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 - 如果使用官方Gentoo install镜像，这一步可以被简化为 arch-chroot /mnt/gentoo，相当于官网进入新环境  chroot /mnt/gentoo /bin/bash 这一步
