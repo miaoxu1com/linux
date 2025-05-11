@@ -98,6 +98,7 @@ swap+efi+root
 
 
 - 可能有用的东西：
+- COMMON_FLAGS="-march=native -O2 -pipe"
 - MAKEOPTS="-j12"
 - GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
 - USE="-gtk -gnome qt6 qt5 gtk4 gtk3 gtk2 kde alsa X wayland vulkan fcitx dist-kernel dbus"
