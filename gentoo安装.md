@@ -204,4 +204,28 @@ EOF
 - echo "quiet splash" >> /etc/kernel/cmdline
 
 - emerge --ask sys-apps/systemd sys-kernel/installkernel
+- 统一内核镜像需要 stub loader。目前，唯一可用的是 systemd-stub。要启用它,uki是统一内核缩写，启用统一内核
+- echo "sys-apps/systemd boot" >> /etc/portage/package.use/uki
+- echo "" >> /etc/portage/package.use/uki
+
+- tee -a /etc/portage/package.use/uki <<EOF
+- sys-apps/systemd boot
+- sys-kernel/installkernel -dracut -ukify -ugrd uki
+- sys-kernel/gentoo-kernel-bin generic-uki
+- EOF
+- mkdir -p /etc/dracut.conf.d
+- tee -a /etc/dracut.conf.d/uki.conf <<EOF
+- uefi="yes"
+- kernel_cmdline="some-kernel-command-line-arguments"
+- EOF
+- emerge --ask -v sys-kernel/installkernel
+- emerge --ask -v sys-apps/systemd
+- emerge --ask -v  sys-kernel/gentoo-kernel-bin 
+- 安装genfstab 工具
+- emerge --ask sys-fs/genfstab
+- 生成fstab
+- genfstab -U /  >> /etc/fstab
+
+
+
 
