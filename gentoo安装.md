@@ -114,7 +114,9 @@ swap+efi+root
 - QT_IM_MODULE=fcitx5
 - XMODIFIERS=@im=fcitx5
 - SDL_IM_MODULE=fcitx5
-
+- 镜像工具安装
+- emerge --ask --verbose --oneshot app-portage/mirrorselect
+- mirrorselect -i -o >> /etc/portage/make.conf
 
 - tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 - cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
