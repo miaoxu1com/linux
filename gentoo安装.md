@@ -106,6 +106,11 @@ swap+efi+root
 - LINGUAS="en en_US zh zh_CN"
 - L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
 - GRUB_PLATFORMS="efi-64"
+- Appending getbinpkg to the list of values within the FEATURES variable
+- FEATURES="${FEATURES} getbinpkg"
+- Require signatures
+- FEATURES="${FEATURES} binpkg-request-signature"
+
 
 - INPUT_METHOD=fcitx5
 - XIM=fcitx5
@@ -137,11 +142,8 @@ swap+efi+root
 
 - 打开https://mirrors.ustc.edu.cn/gentoo/releases 选择和eselect 一样版本的 路径https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64
 - nano /etc/portage/binrepos.conf/gentoobinhost.conf sync-uri值替换为 https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64
-- nano /etc/portage/make.conf 修改配置文件 安装程序默认优先使用二进制包
-- Appending getbinpkg to the list of values within the FEATURES variable
-- FEATURES="${FEATURES} getbinpkg"
-- Require signatures
-- FEATURES="${FEATURES} binpkg-request-signature"
+- nano /etc/portage/make.conf 修改配置文件 安装程序默认优先使用二进制包  也可以使用命令行 传递--getbinpkg 参数 安装是指定从二进制安装
+
 - getuto 生成密钥环 portage USE变量配置不想配置默认即可
 - nano /etc/portage/make.conf  中配置  当通过编译方式安装软件时编译项 USE中排出了桌面环境 因为用的是无桌面安装的
 - USE="-X -gtk -gnome -qt5 -kde"
