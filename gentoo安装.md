@@ -190,14 +190,18 @@ swap+efi+root
 - 大多数无线网卡和 GPU 需要固件才能运行，固件安装
 - emerge --ask sys-kernel/linux-firmware
 - 添加引导配置
-- 注意方式1和方式2这能一种不能同时用不要同时安装会报错
-- 方式1
-- echo "sys-kernel/installkernel grub" >> /etc/portage/package.use/installkernel
-- emerge --ask sys-kernel/installkernel
-- 方式2
+- echo "sys-kernel/installkernel dracut grub efistub" >> /etc/portage/package.use/installkernel
 - tee -a /etc/portage/package.use/systemd <<EOF
 sys-apps/systemd boot
 sys-kernel/installkernel systemd-boot
 EOF
+- tee -a /etc/portage/package.accept_keywords/installkernel <<EOF
+sys-kernel/installkernel
+sys-boot/uefi-mkconfig
+app-emulation/virt-firmware
+EOF
+
+- echo "quiet splash" >> /etc/kernel/cmdline
+
 - emerge --ask sys-apps/systemd sys-kernel/installkernel
-  
+
