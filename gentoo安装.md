@@ -452,7 +452,7 @@ nano /etc/portage/make.conf
 
 添加 ACCEPT_LICENSE="-* @FREE @BINARY-REDISTRIBUTABLE"
 更新@world集合
-> [TIP]
+> [!TIP]
 提示
 如果选择了桌面环境配置文件，则此过程可能大大增加安装过程所需的时间量。时间紧迫的人可以通过这个“经验法则”工作：配置文件名称越短，系统 @world 集 越不具体; @world 集越不具体，系统将需要的软件包越少。换一种说法：
 选择 default/linux/amd64/23.0 将只有很少的包被重装或更新
