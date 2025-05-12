@@ -664,7 +664,7 @@ emerge --ask -vsys-kernel/gentoo-kernel-bin
 
 #### 编辑器和其他工具安装
 ```shell
-emerge -vj app-editors/vim  btrfs-progs neovim eselect-repository xfsprogs  dosfstools
+emerge -vj --ask --getbinpkg  app-editors/vim  btrfs-progs neovim eselect-repository xfsprogs  dosfstools
 ```
 
 #### 修改默认编辑起
