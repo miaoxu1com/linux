@@ -193,6 +193,11 @@ GCC编译配置 -O3代表优化级别,如果采用更高的-Ofast可能会导致
 
 ```shell
 nano /mnt/gentoo/etc/portage/make.conf
+emerge --ask ccache 
+mkdir -p /var/cache/ccache
+chown root:portage /var/cache/ccache -R
+chmod 2775 /var/cache/ccache -R
+emerge --ask aria2
 ```
 
 ```shell
@@ -219,7 +224,10 @@ ACCEPT_LICENSE="*"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
-
+FEATURES="ccache -test"
+CCACHE_DIR="/var/cache/ccache"
+FETCHCOMMAND="/usr/bin/aria2c -d \${DISTDIR} -o \${FILE} --allow-overwrite=true --max-tries=5 --max-file-not-found=2 --max-concurrent-downloads=5 --connect-timeout=5 --timeout=5 --split=5 --min-split-size=2M --lowest-speed-limit=20K --max-connection-per-server=9 --uri-selector=feedback \${URI}"
+RESUMECOMMAND="${FETCHCOMMAND}"
 EMERGE_DEFAULT_OPTS="--ask --verbose=y --keep-going --with-bdeps=y --load-average"
 ```
 
