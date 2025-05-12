@@ -200,14 +200,6 @@ GCC编译配置 -O3代表优化级别,如果采用更高的-Ofast可能会导致
 
 ### 设置gcc编译选项 make.config：
 
-同步 Portage 数据库
-
-```
-emerge-webrsync
-emerge --sync
-```
-
-
 ```shell
 nano /mnt/gentoo/etc/portage/make.conf
 emerge -vj --getbinpkg --ask ccache aria2
