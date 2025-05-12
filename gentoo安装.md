@@ -417,6 +417,11 @@ CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse sse2 s
 CONFIG_PROTECT="/usr/share/sddm/scripts/Xsetup"
 UNINSTALL_IGNORE="/bin /lib /lib64 /sbin /usr/sbin"
 ```
+#### 查看配置的USE
+
+```shell
+emerge --info | grep ^USE
+```
 
 #### 配置软件镜像源
 
