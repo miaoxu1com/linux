@@ -96,7 +96,7 @@ swap+efi+root
 格式化分区
 
 ```
-mkfs.xfs/dev/sda3 root
+mkfs.xfs /dev/sda3
 mkfs.vfat -F 32 /dev/sda1
 mkswap /dev/sda2
 ```
