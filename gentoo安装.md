@@ -133,11 +133,11 @@ mkdir --parents /mnt/gentoo/efi
 在live系统中挂载系统到目标 系统目录 sda3 是根目录分区 sda1是efi分区 挂载到对应的目录 
 
 ```
-mount /mnt/gentoo /dev/sda3
+mount /dev/sda3 /mnt/gentoo
 ```
 
 ```
-mount /mnt/gentoo/efi /dev/sda1
+mount /dev/sda1 /mnt/gentoo/efi 
 ```
 
 安装初始化程序stage3到目标系统
