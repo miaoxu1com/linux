@@ -179,6 +179,10 @@ chronyd -q
 ```shell
 links/lynx https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/
 ```
+#### 指定源同步
+```shell
+GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo" emerge-webrsync
+```
 
 #### 安装初始化程序stage3到目标系统
 
