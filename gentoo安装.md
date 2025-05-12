@@ -208,7 +208,7 @@ FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
 USE="dist-kernel"
 # NOTE: This stage was built with the bindist USE flag enabled
-
+PORTAGE_BINHOST="https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64/"
 # This sets the language of build output to English.
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C.utf8
@@ -218,13 +218,14 @@ L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
 GRUB_PLATFORMS="efi-64"
 FEATURES="${FEATURES} getbinpkg"
 FEATURES="${FEATURES} binpkg-request-signature"
+FEATURES="${FEATURES} ccache -test"
 ACCEPT_KEYWORDS="~amd64"
 ACCEPT_LICENSE="*"
+AUTO_CLEAN="yes"
 # Portage
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
-FEATURES="ccache -test"
 CCACHE_DIR="/var/cache/ccache"
 FETCHCOMMAND="/usr/bin/aria2c -d \${DISTDIR} -o \${FILE} --allow-overwrite=true --max-tries=5 --max-file-not-found=2 --max-concurrent-downloads=5 --connect-timeout=5 --timeout=5 --split=5 --min-split-size=2M --lowest-speed-limit=20K --max-connection-per-server=9 --uri-selector=feedback \${URI}"
 RESUMECOMMAND="${FETCHCOMMAND}"
