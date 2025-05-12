@@ -198,10 +198,6 @@ GCC编译配置 -O3代表优化级别,如果采用更高的-Ofast可能会导致
 
 ```shell
 nano /mnt/gentoo/etc/portage/make.conf
-emerge -vj --getbinpkg --ask ccache aria2
-mkdir -p /var/cache/ccache
-chown root:portage /var/cache/ccache -R
-chmod 2775 /var/cache/ccache -R
 ```
 ##### 方案1
 ```shell
@@ -222,7 +218,6 @@ L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
 GRUB_PLATFORMS="efi-64"
 FEATURES="${FEATURES} getbinpkg"
 FEATURES="${FEATURES} binpkg-request-signature"
-FEATURES="${FEATURES} ccache -test"
 ACCEPT_KEYWORDS="~amd64"
 ACCEPT_LICENSE="*"
 AUTO_CLEAN="yes"
@@ -230,9 +225,6 @@ AUTO_CLEAN="yes"
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
-CCACHE_DIR="/var/cache/ccache"
-FETCHCOMMAND="/usr/bin/aria2c -d \${DISTDIR} -o \${FILE} --allow-overwrite=true --max-tries=5 --max-file-not-found=2 --max-concurrent-downloads=5 --connect-timeout=5 --timeout=5 --split=5 --min-split-size=2M --lowest-speed-limit=20K --max-connection-per-server=9 --uri-selector=feedback \${URI}"
-RESUMECOMMAND="${FETCHCOMMAND}"
 EMERGE_DEFAULT_OPTS="--ask --verbose=y --keep-going --with-bdeps=y --load-average"
 ```
 
@@ -451,6 +443,16 @@ mirrorselect -i -o >> /etc/portage/make.conf
 sed -i '$a nameserver 233.5.5.5' /etc/resolv.conf
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 ```
+####
+
+
+```shell
+FEATURES="${FEATURES} ccache -test"
+CCACHE_DIR="/var/cache/ccache"
+FETCHCOMMAND="/usr/bin/aria2c -d \${DISTDIR} -o \${FILE} --allow-overwrite=true --max-tries=5 --max-file-not-found=2 --max-concurrent-downloads=5 --connect-timeout=5 --timeout=5 --split=5 --min-split-size=2M --lowest-speed-limit=20K --max-connection-per-server=9 --uri-selector=feedback \${URI}"
+RESUMECOMMAND="${FETCHCOMMAND}"
+```
+
 
 #### 如果使用官方Gentoo install镜像，这一步可以被简化为 arch-chroot /mnt/gentoo，相当于官网进入新环境chroot /mnt/gentoo /bin/bash 这一步
 
@@ -478,6 +480,16 @@ GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo" emerge-webrsync
 emerge-webrsync
 emerge --sync
 ```
+#### 安装ccache aria2加速安装和加速重复编译
+
+```shell
+nano /etc/portage/make.conf
+emerge --getbinpkg --ask ccache aria2
+mkdir -p /var/cache/ccache
+chown root:portage /var/cache/ccache -R
+chmod 2775 /var/cache/ccache -R
+```
+
 
 跳过阅读新闻条目这个就是更新公告没啥用
 
@@ -542,6 +554,7 @@ nano /etc/portage/make.conf
 选择 default/linux/amd64/23.0/desktop/gnome/systemd 将需要安装许多软件包，因为 init 系统要从 OpenRC 更改为 systemd，并且将安装 GNOME 桌面环境框架。
 
 ```
+emerge -vj --ask --update --deep --newuse --getbinpkg @world  #不要用这个
 emerge --ask --verbose --update --deep --newuse --getbinpkg @world
 # 简写
 emerge -vuDN @world
@@ -673,7 +686,7 @@ emerge --ask -vsys-kernel/gentoo-kernel-bin
 
 #### 编辑器和其他工具安装
 ```shell
-emerge -vj --ask --getbinpkg  app-editors/vim  btrfs-progs neovim eselect-repository xfsprogs  dosfstools
+emerge --ask --getbinpkg  app-editors/vim  btrfs-progs neovim eselect-repository xfsprogs  dosfstools
 ```
 
 #### 修改默认编辑起
@@ -687,20 +700,20 @@ PS1=(chroot)$PS1
 
 #### 磁盘文件系统安装
 ```shell
-emerge -vj --getbinpkg --ask sys-fs/xfsprogs sys-fs/dosfstools
+emerge --getbinpkg --ask sys-fs/xfsprogs sys-fs/dosfstools
 ```
 
 #### 为方便在安装二进制内核时安装 initramfs，需添加如下 USE 配置（什么是 USE 见下文 USE 标记 一节）
 ```shell
 echo 'sys-kernel/installkernel dracut' >/etc/portage/package.use/installkernel
-emerge -vj --getbinpkg --ask linux-firmware gentoo-kernel-bin grub
+emerge --getbinpkg --ask linux-firmware gentoo-kernel-bin grub
 ```
 
 
 安装genfstab 工具
 
 ```
-emerge -vj --getbinpkg --ask sys-fs/genfstab
+emerge --getbinpkg --ask sys-fs/genfstab
 ```
 
 生成fstab
@@ -714,7 +727,7 @@ passwd
 #### 修改hostsname
 echo tux > /etc/hostname
 #### 安装工具
-emerge -vj --getbinpkg --ask sys-apps/mlocate net-misc/chrony app-shells/bash-completion net-misc/dhcpcd
+emerge --getbinpkg --ask sys-apps/mlocate net-misc/chrony app-shells/bash-completion net-misc/dhcpcd
 #### 设置服务
 systemctl enable dhcpcd
 systemd-machine-id-setup
