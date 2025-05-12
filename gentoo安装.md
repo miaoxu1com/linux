@@ -662,6 +662,19 @@ emerge --ask -v sys-apps/systemd
 emerge --ask -vsys-kernel/gentoo-kernel-bin 
 ```
 
+#### 编辑器和其他工具安装
+```shell
+emerge -vj app-editors/vim  btrfs-progs neovim eselect-repository xfsprogs  dosfstools
+```
+
+#### 修改默认编辑起
+```shell
+eselect editor list
+eselect editor set 「序号」
+# 之后再运行一次
+. /etc/profile
+PS1=(chroot)$PS1
+```
 
 #### 磁盘文件系统安装
 ```shell
