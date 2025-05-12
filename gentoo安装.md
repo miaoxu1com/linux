@@ -143,7 +143,7 @@ mount /mnt/gentoo/efi /dev/sda1
 
 ```
 cd /mnt/gentoo
-tar -xvf stage*.tar
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 
 使用默认配置安装
