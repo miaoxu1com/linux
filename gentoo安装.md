@@ -168,6 +168,12 @@ cd /mnt/gentoo
 跳过stage文件校验
 stage 文件就是完整的系统文件，在gentoo下解压缩后
 stage配置编译选项默认即可
+#### 时间同步
+
+```shell
+chronyd -q
+```
+
 #### 下载stage3
 ```shell
 links https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/
