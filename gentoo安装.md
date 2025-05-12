@@ -19,6 +19,12 @@ adslwepwifi 网络配置也可以跳过因为虚拟机一般都是DHCP自动获�
 具体过程参考
 https://blog.csdn.net/hhc550056259/article/details/123916999
 
+#### 修改dns
+
+```shell
+sed -i '$a nameserver 233.5.5.5' /etc/resolv.conf
+```
+
 然后参考官方文档手动配置网络
 
 检查 ip route 默认网关是否和配置的vmnat8一致
@@ -36,7 +42,7 @@ ip addr 显示ip地址
 ip link 查看网卡接口，不显示ip地址，只显示网络接口
 
 ```
-ping114.114.114.114 
+ping 114.114.114.114 
 ```
 
 有时ping不同可以多一个223.5.5.5
