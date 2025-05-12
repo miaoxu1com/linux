@@ -168,6 +168,10 @@ cd /mnt/gentoo
 跳过stage文件校验
 stage 文件就是完整的系统文件，在gentoo下解压缩后
 stage配置编译选项默认即可
+#### 下载stage3
+```shell
+links https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/
+```
 
 
 GCC编译配置 -O3代表优化级别,如果采用更高的-Ofast可能会导致部分软件包编译错误, -march=native代表为本机cpu进行编译,如果是交叉编译需要去掉
