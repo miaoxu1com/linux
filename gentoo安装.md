@@ -177,7 +177,7 @@ chronyd -q
 
 #### 下载stage3
 ```shell
-links https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/
+links/lynx https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/
 ```
 
 #### 安装初始化程序stage3到目标系统
@@ -199,7 +199,7 @@ chown root:portage /var/cache/ccache -R
 chmod 2775 /var/cache/ccache -R
 emerge --ask aria2
 ```
-
+##### 方案1
 ```shell
 COMMON_FLAGS="-march=native -O2 -pipe"
 CFLAGS="${COMMON_FLAGS}"
@@ -232,7 +232,7 @@ EMERGE_DEFAULT_OPTS="--ask --verbose=y --keep-going --with-bdeps=y --load-averag
 ```
 
 
-
+##### 方案2
 ```shell
 
 COMMON_FLAGS="-march=native -O2 -pipe"
@@ -257,7 +257,7 @@ QT_IM_MODULE=fcitx5
 XMODIFIERS=@im=fcitx5
 SDL_IM_MODULE=fcitx5
 ```
-
+##### 方案3
 ```shell
 # /usr/share/portage/config/make.conf.example
 
@@ -305,7 +305,7 @@ QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc
 QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
 # ABI_X86="64 32"
 ```
-
+##### 方案4
 ```shell
 # These settings were set by the catalyst build script that automatically
 # built this stage.
@@ -358,6 +358,65 @@ GENTOO_MIRRORS="https://mirrors.163.com/gentoo"
 #FEATURES="ccache -test"
 #CCACHE_DIR="/var/cache/ccache"
 ```
+##### 方案5
+
+> https://blog.zozx.top/2025/02/22/gentoo-installation-guide/
+> https://zhuanlan.zhihu.com/p/122222365
+> https://bitbili.net/gentoo-linux-installation-and-usage-tutorial.html#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C
+> https://gitzhangzhao.github.io/posts/linux/gentoo/gentoo/
+> https://gtrush.com/2022/06/12/%E6%96%B0%E6%89%8BGentoo%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%951-%E5%AE%89%E8%A3%85%E7%AF%87-%E4%BA%8C%E8%BF%9B%E5%88%B6kernel%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/
+
+```shell
+# These settings were set by the catalyst build script that automatically
+# built this stage.
+# Please consult /usr/share/portage/config/make.conf.example for a more
+# detailed example.
+NTHREADS=12 # 线程数
+
+COMMON_FLAGS="-march=skylake -O3 -pipe -fgraphite-identity -floop-nest-optimize -fno-stack-protector -fno-align-functions -fno-align-jumps -fno-align-loops -fno-align-labels"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+LDFLAGS="-Wl,-O3 -Wl,--as-needed -Wl,--hash-style=gnu -Wl,--sort-common -Wl,--strip-all" # 该LDFLAGS会导致networkmanager装不了
+RUSTFLAGS="-C opt-level=3 -C target-cpu=skylake"
+
+# NOTE: This stage was built with the bindist Use flag enabled
+PORTDIR="/var/db/repos/gentoo"
+DISTDIR="/var/cache/distfiles"
+PKGDIR="/var/cache/binpkgs"
+PORTAGE_TMPDIR="/tmp"
+
+# This sets the language of build output to English.
+# Please keep this setting intact when reporting bugs.
+LC_MESSAGES=C
+
+MAKEOPTS="-j${NTHREADS} -l${NTHREADS}"
+PORTAGE_NICENESS=15
+PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"
+GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
+FETCHCOMMAND="/usr/bin/aria2c -d \${DISTDIR} -o \${FILE} --allow-overwrite=true --max-tries=8 --max-file-not-found=2 --max-concurrent-downloads=128 --connect-timeout=15 --timeout=15 --split=128 --min-split-size=2M --lowest-speed-limit=20K --max-connection-per-server=16 --uri-selector=feedback \${URI}" # 此处是用aria2代替wget
+RESUMECOMMAND="${FETCHCOMMAND}"
+USE="lto pgo graphite jemalloc ccache clang staging zsh-completion bluetooth pulseaudio pipewire screencast ffmpeg openssl network wifi iptables zstd lz4 7zip rar btrfs tpm gnome-keyring qemu wayland gles2 vdpau vaapi vulkan vkd3d d3d9 nvidia nvenc steamfonts trayicon systray -joystick -games -education -xinerama -firewall -networkmanager -ppp -kaccounts -webengine -kwallet -bittorrent -phonon -vlc -gtk2 -gnome -gnome-shell -gnome-online-accounts -bindist -ssp -doc -gtk-doc -handbook -spell -grub -oss -gpm"
+ACCEPT_KEYWORDS="~amd64" # ~表示unstable，amd64表示架构是x86_64
+ACCEPT_LICENSE="*" # 接受所有协议
+EMERGE_DEFAULT_OPTS="--keep-going --with-bdeps=y --jobs=${NTHREADS} --load-average=${NTHREADS}"
+L10N="en-US zh-CN en zh"
+LINGUAS="en_US zh_CN en zh"
+VIDEO_CARDS="nvidia intel"
+ALSA_CARDS="hda-intel"
+LLVM_TARGETS="X86 NVPTX"
+PYTHON_TARGETS="python3_10"
+PYTHON_SINGLE_TARGET="python3_10"
+RUBY_TARGETS="ruby30 ruby31"
+ABI_X86="64 32"
+FEATURES="ccache"
+CCACHE_DIR="/var/cache/ccache"
+CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_1 sse4_2 ssse3" # 本行由app-portage/cpuid2cpuflags生成
+CONFIG_PROTECT="/usr/share/sddm/scripts/Xsetup"
+UNINSTALL_IGNORE="/bin /lib /lib64 /sbin /usr/sbin"
+```
+
 #### 配置软件镜像源
 
 ```shell
