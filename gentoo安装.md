@@ -443,15 +443,6 @@ mirrorselect -i -o >> /etc/portage/make.conf
 sed -i '$a nameserver 233.5.5.5' /etc/resolv.conf
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 ```
-####
-
-
-```shell
-FEATURES="${FEATURES} ccache -test"
-CCACHE_DIR="/var/cache/ccache"
-FETCHCOMMAND="/usr/bin/aria2c -d \${DISTDIR} -o \${FILE} --allow-overwrite=true --max-tries=5 --max-file-not-found=2 --max-concurrent-downloads=5 --connect-timeout=5 --timeout=5 --split=5 --min-split-size=2M --lowest-speed-limit=20K --max-connection-per-server=9 --uri-selector=feedback \${URI}"
-RESUMECOMMAND="${FETCHCOMMAND}"
-```
 
 
 #### 如果使用官方Gentoo install镜像，这一步可以被简化为 arch-chroot /mnt/gentoo，相当于官网进入新环境chroot /mnt/gentoo /bin/bash 这一步
@@ -483,13 +474,19 @@ emerge --sync
 #### 安装ccache aria2加速安装和加速重复编译
 
 ```shell
-nano /etc/portage/make.conf
+
 emerge --getbinpkg --ask ccache aria2
 mkdir -p /var/cache/ccache
 chown root:portage /var/cache/ccache -R
 chmod 2775 /var/cache/ccache -R
 ```
-
+```shell
+nano /etc/portage/make.conf
+FEATURES="${FEATURES} ccache -test"
+CCACHE_DIR="/var/cache/ccache"
+FETCHCOMMAND="/usr/bin/aria2c -d \${DISTDIR} -o \${FILE} --allow-overwrite=true --max-tries=5 --max-file-not-found=2 --max-concurrent-downloads=5 --connect-timeout=5 --timeout=5 --split=5 --min-split-size=2M --lowest-speed-limit=20K --max-connection-per-server=9 --uri-selector=feedback \${URI}"
+RESUMECOMMAND="${FETCHCOMMAND}"
+```
 
 跳过阅读新闻条目这个就是更新公告没啥用
 
