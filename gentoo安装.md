@@ -201,7 +201,7 @@ CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
-
+USE="dist-kernel"
 # NOTE: This stage was built with the bindist USE flag enabled
 
 # This sets the language of build output to English.
