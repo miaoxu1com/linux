@@ -140,12 +140,7 @@ mount /dev/sda3 /mnt/gentoo
 mount /dev/sda1 /mnt/gentoo/efi
 ```
 
-安装初始化程序stage3到目标系统
 
-```
-cd /mnt/gentoo
-tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
-```
 
 使用默认配置安装
 
@@ -179,6 +174,12 @@ chronyd -q
 links https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/
 ```
 
+#### 安装初始化程序stage3到目标系统
+
+```
+cd /mnt/gentoo
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+```
 
 GCC编译配置 -O3代表优化级别,如果采用更高的-Ofast可能会导致部分软件包编译错误, -march=native代表为本机cpu进行编译,如果是交叉编译需要去掉
 
