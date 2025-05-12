@@ -97,29 +97,31 @@ swap+efi+root
 - stage配置编译选项默认即可
 
 
-- 可能有用的东西：
-- COMMON_FLAGS="-march=native -O2 -pipe"
-- MAKEOPTS="-j12"
-- GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
-- USE="-gtk -gnome qt6 qt5 gtk4 gtk3 gtk2 kde alsa X wayland vulkan fcitx dist-kernel dbus"
-- VIDEO_CARDS="amdgpu radeonsi"
-- ACCEPT_LICENSE="@FREE @BINARY-REDISTRIBUTABLE @EULA"
-- LINGUAS="en en_US zh zh_CN"
-- L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
-- GRUB_PLATFORMS="efi-64"
-- Appending getbinpkg to the list of values within the FEATURES variable
-- FEATURES="${FEATURES} getbinpkg"
-- Require signatures
-- FEATURES="${FEATURES} binpkg-request-signature"
+### portage配置make.config：
+```shell
+  COMMON_FLAGS="-march=native -O2 -pipe"
+  MAKEOPTS="-j12"
+  GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
+  USE="-gtk -gnome qt6 qt5 gtk4 gtk3 gtk2 kde alsa X wayland vulkan fcitx dist-kernel dbus"
+  VIDEO_CARDS="amdgpu radeonsi"
+  ACCEPT_LICENSE="@FREE @BINARY-REDISTRIBUTABLE @EULA"
+  LINGUAS="en en_US zh zh_CN"
+  L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
+  GRUB_PLATFORMS="efi-64"
+  Appending getbinpkg to the list of values within the FEATURES variable
+  FEATURES="${FEATURES} getbinpkg"
+  Require signatures
+  FEATURES="${FEATURES} binpkg-request-signature"
 
 
-- INPUT_METHOD=fcitx5
-- XIM=fcitx5
-- XIM_PROGRAM=fcitx5
-- GTK_IM_MODULE=fcitx5
-- QT_IM_MODULE=fcitx5
-- XMODIFIERS=@im=fcitx5
-- SDL_IM_MODULE=fcitx5
+  INPUT_METHOD=fcitx5
+  XIM=fcitx5
+  XIM_PROGRAM=fcitx5
+  GTK_IM_MODULE=fcitx5
+  QT_IM_MODULE=fcitx5
+  XMODIFIERS=@im=fcitx5
+  SDL_IM_MODULE=fcitx5
+```
   
 ```shell
 # /usr/share/portage/config/make.conf.example
