@@ -185,7 +185,8 @@ stage配置编译选项默认即可
   FEATURES="${FEATURES} getbinpkg"
   Require signatures
   FEATURES="${FEATURES} binpkg-request-signature"
-
+  ACCEPT_KEYWORDS="~amd64"
+  ACCEPT_LICENSE="*"
 
   INPUT_METHOD=fcitx5
   XIM=fcitx5
