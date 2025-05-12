@@ -319,7 +319,7 @@ mkdir -p -v /mnt/gentoo/etc/portage/repos.conf
 cp -v /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 
 
-nano -w /mnt/gentoo/etc/portage/repos.conf/gentoo.conf：    #加入中国源
+nano -w /mnt/gentoo/etc/portage/repos.conf/gentoo.conf    #加入中国源
 sync-uri = rsync://mirrors.163.com/gentoo-portage
 #sync-uri = rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage/
 #sync-uri = rsync://rsync.mirrors.ustc.edu.cn/gentoo-portage/
