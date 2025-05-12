@@ -184,10 +184,6 @@ links https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage
 lynx https://mirrors.ustc.edu.cn/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/
 
 ```
-#### 指定源同步
-```shell
-GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo" emerge-webrsync
-```
 
 #### 安装初始化程序stage3到目标系统
 
@@ -470,6 +466,11 @@ export PS1="(chroot) ${PS1}"
 mkdir /efi
 mount /dev/sda1 /efi
 ```
+#### 指定源同步
+```shell
+GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo" emerge-webrsync
+```
+
 
 配置 Portage 包管理器
 
