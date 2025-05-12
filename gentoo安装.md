@@ -215,12 +215,12 @@ CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
-USE="dist-kernel"
-# NOTE: This stage was built with the bindist USE flag enabled
-PORTAGE_BINHOST="https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64/"
 # This sets the language of build output to English.
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C.utf8
+# NOTE: This stage was built with the bindist USE flag enabled
+USE="dist-kernel"
+PORTAGE_BINHOST="https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64/"
 GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
 LINGUAS="en en_US zh zh_CN"
 L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
