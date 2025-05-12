@@ -460,6 +460,7 @@ cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 #### 如果使用官方Gentoo install镜像，这一步可以被简化为 arch-chroot /mnt/gentoo，相当于官网进入新环境chroot /mnt/gentoo /bin/bash 这一步
 
 ```shell
+arch-chroot /mnt/gentoo
 source /etc/profile
 export PS1="(chroot) ${PS1}"
 ```
