@@ -131,22 +131,23 @@ NTFS	mkfs.ntfs	 是	sys-fs/ntfs3g
 ```
 mkdir --parents /mnt/gentoo
 ```
-
-根目录
-
-```
-mkdir --parents /mnt/gentoo/efi
-```
-
 在live系统中挂载系统到目标 系统目录 sda3 是根目录分区 sda1是efi分区 挂载到对应的目录 
 
 ```
 mount /dev/sda3 /mnt/gentoo
 ```
 
+创建efi目录并挂在分区
+
+```
+mkdir --parents /mnt/gentoo/efi
+```
 ```
 mount /dev/sda1 /mnt/gentoo/efi
 ```
+
+
+
 
 
 
