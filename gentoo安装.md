@@ -471,7 +471,7 @@ mount /dev/sda1 /efi
 GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo" emerge-webrsync
 ```
 
-
+#### 顺序不能提前 livecd中同步和新系统中同步的内容不一样
 配置 Portage 包管理器
 
 ```
