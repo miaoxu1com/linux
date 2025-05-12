@@ -2,11 +2,11 @@
 
 https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Installation/zh-cn
 
-虚拟机安装  可以跳过引导盘制作、镜像校验、定制启动、用户添加（默认都是用root更方便）、启动参数相当于window安全启动或者高级启动
+虚拟机安装可以跳过引导盘制作、镜像校验、定制启动、用户添加（默认都是用root更方便）、启动参数相当于window安全启动或者高级启动
 
-adsl  wep  wifi 网络配置也可以跳过  因为虚拟机一般都是DHCP自动获取、网络代理也无需配置
+adslwepwifi 网络配置也可以跳过因为虚拟机一般都是DHCP自动获取、网络代理也无需配置
 
-使用nat网络方式上网，需要把已经配置了外网的物理网卡共享给虚拟网卡vmnat8，注意不要把共享网络配反了，是把物理公网共享给虚拟网络，然后继续配置vmnat8 ip为vmnat8子网ip  
+使用nat网络方式上网，需要把已经配置了外网的物理网卡共享给虚拟网卡vmnat8，注意不要把共享网络配反了，是把物理公网共享给虚拟网络，然后继续配置vmnat8 ip为vmnat8子网ip
 
 例如：
 
@@ -36,7 +36,7 @@ ip addr 显示ip地址
 ip link 查看网卡接口，不显示ip地址，只显示网络接口
 
 ```
-ping  114.114.114.114 
+ping114.114.114.114 
 ```
 
 有时ping不同可以多一个223.5.5.5
@@ -47,12 +47,12 @@ ping 223.5.5.5
 
 
 
-然后配置nameserver 223.5.5.5  
+然后配置nameserver 223.5.5.5
 /etc/resolv.conf
 
 系统安装的大致过程都一样
 
-启动到live系统 live是带gui的 桌面系统  minalios 是最小化的在线安装
+启动到live系统 live是带gui的 桌面系统minalios 是最小化的在线安装
 
 root登录,live系统都会有提示语
 
@@ -96,9 +96,9 @@ swap+efi+root
 格式化分区
 
 ```
-mkfs.xfs  /dev/sda3 root
+mkfs.xfs/dev/sda3 root
 mkfs.vfat -F 32 /dev/sda1
-mkswap /dev/sda2  
+mkswap /dev/sda2
 ```
 
 //格式化不需要挂载 激活即可
@@ -120,7 +120,7 @@ NTFS	mkfs.ntfs	 是	sys-fs/ntfs3g
 创建目标系统目录
 
 ```
-mkdir --parents /mnt/gentoo  
+mkdir --parents /mnt/gentoo
 ```
 
 根目录
@@ -149,11 +149,11 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 使用默认配置安装
 
 切换到目标系统编译安装内核, 进行预安装工作
-open-rc 和 system  是用来管理服务
+open-rc 和 system是用来管理服务
 重启服务
 
 ```
-systemctl  restart sshd
+systemctlrestart sshd
 rc-service sshd start
 ```
 
@@ -172,29 +172,29 @@ stage配置编译选项默认即可
 ### portage配置make.config：
 
 ```shell
-  COMMON_FLAGS="-march=native -O2 -pipe"
-  MAKEOPTS="-j12"
-  GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
-  USE="-gtk -gnome qt6 qt5 gtk4 gtk3 gtk2 kde alsa X wayland vulkan fcitx dist-kernel dbus"
-  VIDEO_CARDS="amdgpu radeonsi"
-  ACCEPT_LICENSE="@FREE @BINARY-REDISTRIBUTABLE @EULA"
-  LINGUAS="en en_US zh zh_CN"
-  L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
-  GRUB_PLATFORMS="efi-64"
-  Appending getbinpkg to the list of values within the FEATURES variable
-  FEATURES="${FEATURES} getbinpkg"
-  Require signatures
-  FEATURES="${FEATURES} binpkg-request-signature"
-  ACCEPT_KEYWORDS="~amd64"
-  ACCEPT_LICENSE="*"
+COMMON_FLAGS="-march=native -O2 -pipe"
+MAKEOPTS="-j12"
+GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
+USE="-gtk -gnome qt6 qt5 gtk4 gtk3 gtk2 kde alsa X wayland vulkan fcitx dist-kernel dbus"
+VIDEO_CARDS="amdgpu radeonsi"
+ACCEPT_LICENSE="@FREE @BINARY-REDISTRIBUTABLE @EULA"
+LINGUAS="en en_US zh zh_CN"
+L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
+GRUB_PLATFORMS="efi-64"
+Appending getbinpkg to the list of values within the FEATURES variable
+FEATURES="${FEATURES} getbinpkg"
+Require signatures
+FEATURES="${FEATURES} binpkg-request-signature"
+ACCEPT_KEYWORDS="~amd64"
+ACCEPT_LICENSE="*"
 
-  INPUT_METHOD=fcitx5
-  XIM=fcitx5
-  XIM_PROGRAM=fcitx5
-  GTK_IM_MODULE=fcitx5
-  QT_IM_MODULE=fcitx5
-  XMODIFIERS=@im=fcitx5
-  SDL_IM_MODULE=fcitx5
+INPUT_METHOD=fcitx5
+XIM=fcitx5
+XIM_PROGRAM=fcitx5
+GTK_IM_MODULE=fcitx5
+QT_IM_MODULE=fcitx5
+XMODIFIERS=@im=fcitx5
+SDL_IM_MODULE=fcitx5
 ```
 
 ```shell
@@ -248,14 +248,14 @@ QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32
 ### 镜像工具安装
 
 ```shell
-  emerge --ask --verbose --oneshot app-portage/mirrorselect
-  mirrorselect -i -o >> /etc/portage/make.conf
+emerge --ask --verbose --oneshot app-portage/mirrorselect
+mirrorselect -i -o >> /etc/portage/make.conf
 
-  tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
-  cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 ```
 
-#### 如果使用官方Gentoo install镜像，这一步可以被简化为 arch-chroot /mnt/gentoo，相当于官网进入新环境  chroot /mnt/gentoo /bin/bash 这一步
+#### 如果使用官方Gentoo install镜像，这一步可以被简化为 arch-chroot /mnt/gentoo，相当于官网进入新环境chroot /mnt/gentoo /bin/bash 这一步
 
 ```shell
 source /etc/profile
@@ -293,10 +293,10 @@ eselect profile list
 
 打开https://mirrors.ustc.edu.cn/gentoo/releases 选择和eselect 一样版本的 路径https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64
 nano /etc/portage/binrepos.conf/gentoobinhost.conf sync-uri值替换为 https://mirrors.ustc.edu.cn/gentoo/releases/amd64/binpackages/23.0/x86-64
-nano /etc/portage/make.conf 修改配置文件 安装程序默认优先使用二进制包  也可以使用命令行 传递--getbinpkg 参数 安装是指定从二进制安装
+nano /etc/portage/make.conf 修改配置文件 安装程序默认优先使用二进制包也可以使用命令行 传递--getbinpkg 参数 安装是指定从二进制安装
 
 getuto 生成密钥环 portage USE变量配置不想配置默认即可
-nano /etc/portage/make.conf  中配置  当通过编译方式安装软件时编译项 USE中排出了桌面环境 因为用的是无桌面安装的
+nano /etc/portage/make.conf中配置当通过编译方式安装软件时编译项 USE中排出了桌面环境 因为用的是无桌面安装的
 USE="-X -gtk -gnome -qt5 -kde"
 配置portage CPU_FLAGS_* 默认也可以
 
@@ -348,7 +348,7 @@ ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 查看可用的区域设置
 
 ```
-cat  /usr/share/i18n/SUPPORTED
+cat/usr/share/i18n/SUPPORTED
 ```
 
 设置可用区域
@@ -444,7 +444,7 @@ kernel_cmdline="some-kernel-command-line-arguments"
 EOF
 emerge --ask -v sys-kernel/installkernel
 emerge --ask -v sys-apps/systemd
-emerge --ask -v  sys-kernel/gentoo-kernel-bin 
+emerge --ask -vsys-kernel/gentoo-kernel-bin 
 ```
 
 安装genfstab 工具
@@ -456,6 +456,6 @@ emerge --ask sys-fs/genfstab
 生成fstab
 
 ```
-genfstab -U /  >> /etc/fstab
+genfstab -U />> /etc/fstab
 ```
 
