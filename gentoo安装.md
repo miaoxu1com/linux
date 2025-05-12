@@ -181,9 +181,7 @@ ACCEPT_LICENSE="@FREE @BINARY-REDISTRIBUTABLE @EULA"
 LINGUAS="en en_US zh zh_CN"
 L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
 GRUB_PLATFORMS="efi-64"
-Appending getbinpkg to the list of values within the FEATURES variable
 FEATURES="${FEATURES} getbinpkg"
-Require signatures
 FEATURES="${FEATURES} binpkg-request-signature"
 ACCEPT_KEYWORDS="~amd64"
 ACCEPT_LICENSE="*"
