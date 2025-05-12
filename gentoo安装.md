@@ -528,6 +528,8 @@ nano /etc/portage/make.conf
 
 ```
 emerge --ask --verbose --update --deep --newuse --getbinpkg @world
+# 简写
+emerge -vuDN @world
 ```
 
 清理包数据库过时的软件包元信息
