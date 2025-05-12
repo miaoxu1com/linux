@@ -184,8 +184,11 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 GCC编译配置 -O3代表优化级别,如果采用更高的-Ofast可能会导致部分软件包编译错误, -march=native代表为本机cpu进行编译,如果是交叉编译需要去掉
 
 ### portage配置make.config：
-
 ```shell
+nano /mnt/gentoo/etc/portage/make.conf
+```
+```shell
+
 COMMON_FLAGS="-march=native -O2 -pipe"
 MAKEOPTS="-j12"
 GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
