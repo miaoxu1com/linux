@@ -137,7 +137,7 @@ mount /dev/sda3 /mnt/gentoo
 ```
 
 ```
-mount /dev/sda1 /mnt/gentoo/efi 
+mount /dev/sda1 /mnt/gentoo/efi
 ```
 
 安装初始化程序stage3到目标系统
