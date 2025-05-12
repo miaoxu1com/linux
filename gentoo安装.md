@@ -99,6 +99,7 @@ swap+efi+root
 mkfs.xfs /dev/sda3
 mkfs.vfat -F 32 /dev/sda1
 mkswap /dev/sda2
+swapon /dev/sda2
 ```
 
 //格式化不需要挂载 激活即可
