@@ -262,8 +262,7 @@ QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32
 ```shell
 emerge --ask --verbose --oneshot app-portage/mirrorselect
 mirrorselect -i -o >> /etc/portage/make.conf
-
-tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+sed -i '$a nameserver 233.5.5.5' /etc/resolv.conf
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 ```
 
