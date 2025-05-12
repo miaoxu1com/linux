@@ -190,9 +190,41 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 GCC编译配置 -O3代表优化级别,如果采用更高的-Ofast可能会导致部分软件包编译错误, -march=native代表为本机cpu进行编译,如果是交叉编译需要去掉
 
 ### 设置gcc编译选项 make.config：
+
 ```shell
 nano /mnt/gentoo/etc/portage/make.conf
 ```
+
+```shell
+COMMON_FLAGS="-march=native -O2 -pipe"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+
+# NOTE: This stage was built with the bindist USE flag enabled
+
+# This sets the language of build output to English.
+# Please keep this setting intact when reporting bugs.
+LC_MESSAGES=C.utf8
+GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
+LINGUAS="en en_US zh zh_CN"
+L10N="en en-US zh zh-Hans zh-Hans-CN zh-CN"
+GRUB_PLATFORMS="efi-64"
+FEATURES="${FEATURES} getbinpkg"
+FEATURES="${FEATURES} binpkg-request-signature"
+ACCEPT_KEYWORDS="~amd64"
+ACCEPT_LICENSE="*"
+# Portage
+PORTDIR="/usr/portage"
+DISTDIR="${PORTDIR}/distfiles"
+PKGDIR="${PORTDIR}/packages"
+
+EMERGE_DEFAULT_OPTS="--ask --verbose=y --keep-going --with-bdeps=y --load-average"
+```
+
+
+
 ```shell
 
 COMMON_FLAGS="-march=native -O2 -pipe"
