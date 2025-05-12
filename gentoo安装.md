@@ -615,7 +615,8 @@ cat /etc/locale.conf
 ```
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 ```
-
+---
+==========================这里无须执行========================
 大多数无线网卡和 GPU 需要固件才能运行，固件安装
 
 ```
@@ -661,6 +662,8 @@ emerge --ask -v sys-kernel/installkernel
 emerge --ask -v sys-apps/systemd
 emerge --ask -vsys-kernel/gentoo-kernel-bin 
 ```
+=====================无须执行=================================
+---
 
 #### 编辑器和其他工具安装
 ```shell
@@ -678,8 +681,7 @@ PS1=(chroot)$PS1
 
 #### 磁盘文件系统安装
 ```shell
-emerge --getbinpkg --ask sys-fs/xfsprogs
-emerge --getbinpkg --ask sys-fs/dosfstools
+emerge -vj --getbinpkg --ask sys-fs/xfsprogs sys-fs/dosfstools
 ```
 
 #### 为方便在安装二进制内核时安装 initramfs，需添加如下 USE 配置（什么是 USE 见下文 USE 标记 一节）
@@ -701,3 +703,28 @@ emerge -vj --getbinpkg --ask sys-fs/genfstab
 genfstab -U />> /etc/fstab
 ```
 
+#### 修改root密码
+passwd
+#### 修改hostsname
+echo tux > /etc/hostname
+#### 安装工具
+emerge -vj --getbinpkg --ask sys-apps/mlocate net-misc/chrony app-shells/bash-completion net-misc/dhcpcd
+#### 设置服务
+systemctl enable dhcpcd
+systemd-machine-id-setup
+systemd-firstboot --prompt
+systemctl preset-all --preset-mode=enable-only
+systemctl preset-all
+systemctl enable sshd
+
+
+#### （可选）如果之前有分配交换分区，在这里可以执行如下命令以启用其休眠后唤醒的功能
+sed -Ei "/GRUB_CMDLINE_LINUX_DEFAULT/s/^#*(GRUB.*DEFAULT=).*$/\1\"resume=UUID=$(blkid -o value /dev/sdX4 | head -1)\"/" /etc/default/grub
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=Gentoo --removable
+grub-mkconfig -o /boot/grub/grub.cfg
+#### 同步一下当前的文件系统
+sync
+exit
+umount -l /mnt/gentoo/dev{/shm,/pts,}
+umount -R /mnt/gentoo
+reboot
