@@ -356,6 +356,7 @@ GENTOO_MIRRORS="https://mirrors.163.com/gentoo"
 mkdir -p -v /mnt/gentoo/etc/portage/repos.conf
 cp -v /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 
+sed -i 's|^\(sync-uri\s*=\s*\).*|\1rsync://rsync.mirrors.ustc.edu.cn/gentoo-portage/|' /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 
 nano -w /mnt/gentoo/etc/portage/repos.conf/gentoo.conf    #加入中国源
 sync-uri = rsync://mirrors.163.com/gentoo-portage
