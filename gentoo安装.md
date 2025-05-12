@@ -685,14 +685,14 @@ emerge --getbinpkg --ask sys-fs/dosfstools
 #### 为方便在安装二进制内核时安装 initramfs，需添加如下 USE 配置（什么是 USE 见下文 USE 标记 一节）
 ```shell
 echo 'sys-kernel/installkernel dracut' >/etc/portage/package.use/installkernel
-emerge -vj linux-firmware gentoo-kernel-bin grub
+emerge -vj --getbinpkg --ask linux-firmware gentoo-kernel-bin grub
 ```
 
 
 安装genfstab 工具
 
 ```
-emerge --ask sys-fs/genfstab
+emerge -vj --getbinpkg --ask sys-fs/genfstab
 ```
 
 生成fstab
