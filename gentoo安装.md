@@ -1,5 +1,7 @@
 ## 安装手册/指导书
 
+### vmware虚拟机安装一定要在高级中设置为uefi模式，创建虚拟机时一定要选择linux 其他对应内核版本  选择其他的无法修改uefi模式
+
 https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Installation/zh-cn
 
 虚拟机安装可以跳过引导盘制作、镜像校验、定制启动、用户添加（默认都是用root更方便）、启动参数相当于window安全启动或者高级启动
