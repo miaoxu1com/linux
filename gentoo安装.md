@@ -752,6 +752,12 @@ grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=Gentoo --r
 grub-mkconfig -o /boot/grub/grub.cfg
 # 同步一下当前的文件系统
 sync
+#退出新系统前创建一个用户防止root不让登录
+useradd
+useradd -m -G users,wheel,audio -s /bin/bash mx
+passwd mx
+rm /stage3-*.tar.*
+
 exit
 umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -R /mnt/gentoo
