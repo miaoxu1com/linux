@@ -38,6 +38,8 @@ archinstall
 
 #### archinstall最后步骤记得保存配置
 
+#### gnome桌面
+> https://dustwind.ink/2024/04/06/ArchLinux+GNOME%E5%AE%89%E8%A3%85/
 
 #### wayland桌面
 > https://a-wing.top/linux/2022/01/03/translate_wayland
@@ -192,4 +194,9 @@ env:
   LANG: "zh_CN.UTF-8"
 EOF
 ```
+#### archinstall安装的gnome不带终端，从启动菜单启动命令行应用会报找不到gnome终端，安装终端后问题解决
+```shell
+sudo pacman -S  gnome-terminal
+```
+
 
