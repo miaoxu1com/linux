@@ -44,6 +44,7 @@ archinstall
 
 #### hyprland桌面
 > https://cascade.moe/posts/hyprland-configure/
+> https://blog.soulter.top/posts/arch-linux-hyprland.html
 
 #### arch安装阶段忘记添加用户
 
