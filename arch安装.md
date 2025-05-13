@@ -201,6 +201,8 @@ sudo pacman -S  gnome-tweaks gnome-terminal dconf-editor
 #### man命令
 ```shell
 sudo pacman -S man-db man-pages texinfo yazi fastfetch fzf exa eza lsd zoxide  bash-completion ripgrep
+paru -S yazi-git ffmpegthumbnailer p7zip jq poppler fd imagemagick
+
 ```
 #### aur不稳定源
 
