@@ -151,3 +151,10 @@ sudo pacman -S plasma-desktop        # KDE 桌面中文包
 #dolphin文件管理器中文，直接在文件管理器设置中只保留zh_cn,就会显示中文
 #最后重启浏览器
 ```
+#### 卸载不需要的文件
+```shell
+#卸载文件及不再需要的依赖项
+sudo pacman -Rs kitty
+#查询卸载成功
+pacman -Q kitty
+```
