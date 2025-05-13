@@ -1,4 +1,6 @@
 ### archinstall  安装
+#### esc显示archinstall的帮助
+#### space进行多选/取消多选
 #### 启动live os
 #### 启动ssh
 ```shell
