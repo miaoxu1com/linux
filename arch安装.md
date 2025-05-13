@@ -56,6 +56,11 @@ Ctrl + Alt +  F2-F6 切换到 TTY 终端
 
 用 root 登录：
 
+#### 启动网络组件
+```shell
+sudo systemctl enable NetworkManager && sudo systemctl start NetworkManager
+```
+
 #### 创建新用户
 
 ```shell
