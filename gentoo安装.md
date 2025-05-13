@@ -724,27 +724,37 @@ genfstab -U />> /etc/fstab
 ```
 
 #### 修改root密码
+```shell
 passwd
-#### 修改hostsname
+#修改hostsname
 echo tux > /etc/hostname
+```
+
 #### 安装工具
+```shell
 emerge --getbinpkg --ask sys-apps/mlocate net-misc/chrony app-shells/bash-completion net-misc/dhcpcd
+```
+
 #### 设置服务
+```shell
 systemctl enable dhcpcd
 systemd-machine-id-setup
 systemd-firstboot --prompt
 systemctl preset-all --preset-mode=enable-only
 systemctl preset-all
 systemctl enable sshd
-
+```
 
 #### （可选）如果之前有分配交换分区，在这里可以执行如下命令以启用其休眠后唤醒的功能
+```shell
 sed -Ei "/GRUB_CMDLINE_LINUX_DEFAULT/s/^#*(GRUB.*DEFAULT=).*$/\1\"resume=UUID=$(blkid -o value /dev/sdX4 | head -1)\"/" /etc/default/grub
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=Gentoo --removable
 grub-mkconfig -o /boot/grub/grub.cfg
-#### 同步一下当前的文件系统
+# 同步一下当前的文件系统
 sync
 exit
 umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -R /mnt/gentoo
 reboot
+```
+
