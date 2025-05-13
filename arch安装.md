@@ -14,6 +14,26 @@ passwd
 archinstall
 ```
 
+
+#### 安装时arch可以选择greeter：默认是sddm可以选择其他的  
+- gdm是gonme系列
+- kdm是kde系列登录管理器
+
+#### 内核版本  
+- Linux 默认内核
+- lts 长期稳定
+- zen 高性能版
+- Hardened 稳定强化版  
+
+#### 驱动
+- 虚拟机版本
+- intel
+- amg
+- nvida
+
+####  添加一个新用户
+- 用于登录
+
 #### archinstall最后步骤记得保存配置
 
 
