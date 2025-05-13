@@ -147,4 +147,5 @@ sudo pacman -S wqy-microhei    # 文泉驿微米黑
 sudo pacman -S gnome-control-center  # GNOME 设置中心（已包含语言包）
 sudo pacman -S plasma-desktop        # KDE 桌面中文包
 #dolphin文件管理器中文，直接在文件管理器设置中只保留zh_cn,就会显示中文
+#最后重启浏览器
 ```
