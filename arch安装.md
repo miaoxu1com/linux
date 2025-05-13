@@ -1,3 +1,10 @@
+### 使用不是最新的liveos 引导镜像
+```shell
+#必须要执行禁用校验
+sed -i 's/SigLevel.*/SigLevel = Never/' /etc/pacman.conf
+```
+
+
 ### archinstall  安装
 #### esc显示archinstall的帮助
 #### space进行多选/取消多选
