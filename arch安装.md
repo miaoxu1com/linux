@@ -196,10 +196,10 @@ EOF
 ```
 #### archinstall安装的gnome不带终端，从启动菜单启动命令行应用会报找不到gnome终端，安装终端后问题解决
 ```shell
-sudo pacman -S  gnome-terminal
+sudo pacman -S  gnome-tweaks gnome-terminal dconf-editor
 ```
 #### man命令
 ```shell
-sudo pacman -S man-db man-pages texinfo
+sudo pacman -S man-db man-pages texinfo 
 ```
 
