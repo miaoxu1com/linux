@@ -725,7 +725,7 @@ genfstab -U />> /etc/fstab
 
 #### 修改root密码
 ```shell
-passwd
+passwd root
 #修改hostsname
 echo tux > /etc/hostname
 ```
@@ -759,6 +759,7 @@ passwd mx
 rm /stage3-*.tar.*
 
 exit
+passwd root
 umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -R /mnt/gentoo
 reboot
