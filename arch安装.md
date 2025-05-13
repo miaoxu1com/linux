@@ -198,5 +198,8 @@ EOF
 ```shell
 sudo pacman -S  gnome-terminal
 ```
-
+#### man命令
+```shell
+sudo pacman -S man-db man-pages texinfo
+```
 
