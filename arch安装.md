@@ -108,3 +108,43 @@ mount /dev/nvme0n1p2 /mnt  # 替换为你的根分区
 arch-chroot /mnt
 passwd root  # 修改 root 密码
 ```
+
+#### 默认终端
+```shell
+echo $TERMINAL
+```
+
+没有输出是没有设置默认终端
+
+```shell
+#追加到bashrc配置文件
+sed -i '$a export TERMINAL=alacritty' ~/.bashrc
+#确保不重复追加
+grep -q "export TERMINAL=alacritty" ~/.bashrc || echo "export TERMINAL=alacritty" >> ~/.bashrc
+#图形界面下执行$TERMINAL，打开终端配置默认终端成功
+```
+
+
+#### 中文语言包
+- 方式1 修改文件
+```shell
+nano /etc/locale.gen
+```
+- 方式2 命令替换
+```shell
+sudo sed -i 's/^#zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
+sudo locale-gen
+#如果希望保持终端/命令行仍显示英文（便于排错），可改为
+echo 'LANG=en_US.UTF-8' | sudo tee /etc/locale.conf
+echo 'LC_ALL=zh_CN.UTF-8' | sudo tee -a /etc/locale.conf
+```
+```shell
+#主字体
+pacman -S noto-fonts-cjk  # Google Noto 字体（包含简繁日韩）
+#备字体
+sudo pacman -S wqy-microhei    # 文泉驿微米黑
+#GNOME/KDE支持中文
+sudo pacman -S gnome-control-center  # GNOME 设置中心（已包含语言包）
+sudo pacman -S plasma-desktop        # KDE 桌面中文包
+#dolphin文件管理器中文，直接在文件管理器设置中只保留zh_cn,就会显示中文
+```
