@@ -200,6 +200,7 @@ sudo pacman -S  gnome-tweaks gnome-terminal dconf-editor
 ```
 #### man命令
 ```shell
-sudo pacman -S man-db man-pages texinfo yazi fastfetch fzf exa eza lsd zoxide  bash-completion
+sudo pacman -S man-db man-pages texinfo yazi fastfetch fzf exa eza lsd zoxide  bash-completion ripgrep
 ```
+#### aur不稳定源
 
