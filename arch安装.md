@@ -159,3 +159,32 @@ sudo pacman -Rs kitty
 #查询卸载成功
 pacman -Q kitty
 ```
+#### alacritty终端中文
+```shell
+mkdir -p ~/.config/alacritty && touch ~/.config/alacritty/alacritty.yml
+nano ~/.config/alacritty/alacritty.yml
+#复制进入alacritty.yml
+cat << 'EOF' >> ~/.config/alacritty/alacritty.yml
+font:
+  normal:
+    family: "WenQuanYi Micro Hei"
+    style: Regular
+  bold:
+    family: "WenQuanYi Micro Hei"
+    style: Bold
+  italic:
+    family: "WenQuanYi Micro Hei"
+    style: Italic
+  size: 11.0
+  character_width: 1.0
+
+charset:
+  language: "zh_CN.UTF-8"
+  renderer: gl
+
+env:
+  LC_ALL: "zh_CN.UTF-8"
+  LANG: "zh_CN.UTF-8"
+EOF
+```
+
