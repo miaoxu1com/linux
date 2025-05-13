@@ -23,6 +23,11 @@ passwd
 archinstall
 ```
 
+#### desk一定要选择gnome hyperland
+#省的给自己找很多麻烦，导致桌面环境组件缺少，桌面体验不完整
+
+
+
 
 #### 安装时arch可以选择greeter：默认是sddm可以选择其他的  
 - gdm是gonme系列
@@ -36,7 +41,7 @@ archinstall
 
 #### 驱动
 - 虚拟机版本
-- intel
+- intel 可以选择
 - amg
 - nvida
 
@@ -70,6 +75,8 @@ Ctrl + Alt +  F2-F6 切换到 TTY 终端
 sudo systemctl enable NetworkManager && sudo systemctl start NetworkManager
 ```
 
+
+---
 #### 创建新用户
 
 ```shell
@@ -84,7 +91,8 @@ EDITOR=nano visudo
 
 找到 # %wheel ALL=(ALL:ALL) ALL，去掉 # 取消注释，保存退出（Ctrl+O → Enter → Ctrl+X）
 ```
-
+---
+---
 #### 重新启动显示管理器
 
 如果使用 SDDM（Hyprland 默认）
@@ -117,6 +125,8 @@ chown -R 用户名:用户名 /home/用户名  # 确保家目录权限正确
 journalctl -u sddm -b  # 如果使用 SDDM
 cat ~/.local/share/hyprland/hyprland.log  # Hyprland 日志
 ```
+---
+
 
 #### 重启进入 Arch ISO（安装U盘）
 #### 挂载根分区：
@@ -126,7 +136,7 @@ arch-chroot /mnt
 passwd root  # 修改 root 密码
 ```
 
-#### 默认终端
+#### gnome无法修改默认终端
 ```shell
 echo $TERMINAL
 ```
@@ -154,18 +164,24 @@ sudo locale-gen
 #如果希望保持终端/命令行仍显示英文（便于排错），可改为
 echo 'LANG=en_US.UTF-8' | sudo tee /etc/locale.conf
 echo 'LC_ALL=zh_CN.UTF-8' | sudo tee -a /etc/locale.conf
+#备字体 字体很小
+sudo pacman -S wqy-microhei    # 文泉驿微米黑
+
 ```
+---
+### 这里的不需要执行
 ```shell
 #主字体
 pacman -S noto-fonts-cjk  # Google Noto 字体（包含简繁日韩）
-#备字体
-sudo pacman -S wqy-microhei    # 文泉驿微米黑
 #GNOME/KDE支持中文
 sudo pacman -S gnome-control-center  # GNOME 设置中心（已包含语言包）
 sudo pacman -S plasma-desktop        # KDE 桌面中文包
 #dolphin文件管理器中文，直接在文件管理器设置中只保留zh_cn,就会显示中文
-#最后重启浏览器
+#最后重启系统
 ```
+### 这里的不需要执行
+---
+
 #### 卸载不需要的文件
 ```shell
 #卸载文件及不再需要的依赖项
