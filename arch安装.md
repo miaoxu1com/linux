@@ -200,6 +200,6 @@ sudo pacman -S  gnome-tweaks gnome-terminal dconf-editor
 ```
 #### man命令
 ```shell
-sudo pacman -S man-db man-pages texinfo 
+sudo pacman -S man-db man-pages texinfo yazi
 ```
 
