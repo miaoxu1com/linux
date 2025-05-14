@@ -19,6 +19,7 @@ pacman -S --needed base-devel git
 #### yay 工具使 AUR 使用更加方便，像 pacman 包管理器一样可以一条命令安装卸载软件，同时方便管理
 ```shell
 pacman -S --needed base-devel git
+#注意这里不是github地址，不能在浏览器打开只能用git克隆
 git clone https://aur.archlinux.org/yay.git
 ```
 
