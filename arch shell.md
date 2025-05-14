@@ -59,8 +59,10 @@ chown -R yay:yay yay
 #### 用代理编译aur
 #### 编译安装的工具包含在 base-devel 软件包中，因此请保证安装了 base-devel
 #### 安装过程中会从 GitHub 上克隆代码，有时会因连接不上而下载失败，因此推荐配置代理之后再进行 yay 的下载
+```shell
 cd yay
 GOPROXY=https://goproxy.cn makepkg -si
+```
 #### 安装完成后可以进行以下操作更新整个系统，同时检查是否安装成功
 yay -Syyu
 
