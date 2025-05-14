@@ -63,6 +63,8 @@ chown -R yay:yay yay
 ```shell
 cd yay
 GOPROXY=https://goproxy.cn makepkg -si
+# 安装等宽字体
+yay -S ttf-jetbrains-mono-nerd
 ```
 #### 安装完成后可以进行以下操作更新整个系统，同时检查是否安装成功
 yay -Syyu
