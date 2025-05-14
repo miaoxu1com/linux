@@ -40,6 +40,9 @@ ln -s /usr/bin/vim /usr/bin/vi
 #### 然后编辑 sudo 配置
 #### 执行 visudo 命令后进入配置文件并去掉第82行的注释
 %wheel ALL=(ALL) ALL
+```shell
+sudo sed -i 's/^#\s*%wheel\s\+ALL=(ALL:ALL)\s\+ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+```
 
 #### 然后将用户加入 wheel 用户组以加入 sudoer
 usermod -aG wheel yay
