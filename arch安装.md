@@ -423,9 +423,11 @@ makepkg -si
 ```
 nano ~/.bashrc
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
-#重启系统，执行命令
+#重启系统，执行命令，不能用root用户启动
 Hyprland
 ```
 
 #### 配置开机启动Hyperland
+
+#### 远程桌面
 
