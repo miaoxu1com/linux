@@ -386,6 +386,8 @@ arch-packages包缓存放在/home/mx/.cache/dots-hyprland/arch-packages目录
 #### 安装依赖工具
 
 ```bash
+###hyprland有二进制包
+pacman -S hyperland-bin
 #预置主题需要使用uv创建虚拟环境设置镜像源
 export UV_PYTHON_INSTALL_MIRROR=https://gh-deno.mocn.top/https://github.com/astral-sh/python-build-standalone/releases/download
 #临时设置pypi镜像源
