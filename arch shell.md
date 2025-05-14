@@ -17,11 +17,6 @@ pacman -S --needed base-devel git
 #### Arch Linux 很为人称道的一点便是 AUR 了，其中包含了很多很多常用软件，甚至包括闭源软件，主要还包含了很多中国大陆常用的软件
 #### 但直接使用 AUR 相对麻烦，需要首先克隆源码，然后编译安装，最重要的是管理上相对复杂
 #### yay 工具使 AUR 使用更加方便，像 pacman 包管理器一样可以一条命令安装卸载软件，同时方便管理
-```shell
-pacman -S --needed base-devel git
-#注意这里不是github地址，不能在浏览器打开只能用git克隆
-git clone https://aur.archlinux.org/yay.git
-```
 
 #### 编译创建非 root 用户,# '-m' 参数表示为用户创建家目录
 ```shell
@@ -50,6 +45,13 @@ usermod -aG wheel yay
 
 #### 可以使用以下命令查看用户是否加入 wheel 用户组
 groups yay
+
+```shell
+su - yay
+pacman -S --needed base-devel git
+#注意这里不是github地址，不能在浏览器打开只能用git克隆
+git clone https://aur.archlinux.org/yay.git
+```
 
 #### 修改用户属主和 属组
 ```shell
