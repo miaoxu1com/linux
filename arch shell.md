@@ -54,7 +54,7 @@ groups yay
 #### 修改用户属主和 属组
 ```shell
 chmod -R +755 yay
-chwon -R yay:yay yay
+chown -R yay:yay yay
 ```
 #### 用代理编译aur
 #### 编译安装的工具包含在 base-devel 软件包中，因此请保证安装了 base-devel
