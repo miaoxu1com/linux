@@ -229,5 +229,82 @@ sudo pacman -S lsd exa
 sudo pacman -S man-db man-pages texinfo yazi fastfetch fzf eza zoxide  bash-completion ripgrep ffmpegthumbnailer p7zip jq poppler fd imagemagick
 
 ```
-#### aur不稳定源
+
+
+#### 修改官方镜像源
+
+```bash
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+sudo tee -a /etc/pacman.d/mirrorlist <<EOF
+# 华为镜像站
+Server = https://repo.huaweicloud.com/archlinux/\$repo/os/\$arch
+# 阿里镜像站
+Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch
+# 清华镜像站
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/\$repo/os/\$arch
+EOF
+tail -n 10 /etc/pacman.d/mirrorlist
+# **优化镜像顺序**
+速度优化：
+可以运行以下命令选择最快的镜像：
+sudo pacman-mirrors -c China 
+使用 `reflector` 自动选择最快镜像（推荐）：
+sudo pacman -S reflector
+sudo reflector --country China --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+或手动将最快的镜像移到文件顶部（Pacman 从上到下选择）
+```
+
+#### 修改**中文用户社区仓库**源
+
+```bash
+sudo cp /etc/pacman.conf /etc/pacman.conf.bak
+sudo tee -a /etc/pacman.conf <<EOF
+
+[archlinuxcn]
+# 阿里archlinuxcn源
+Server = https://mirrors.aliyun.com/archlinuxcn/\$arch
+# 清华archlinuxcn源（注释备用）
+# Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/\$arch
+EOF
+tail -n 10 /etc/pacman.conf  # 查看最后 10 行
+sudo pacman -Sy archlinuxcn-keyring
+sudo pacman -Syu
+```
+
+#### 开启pacman多线程
+
+```bash
+编辑 /etc/pacman.conf 文件，将对应位置前 # 删除即可
+#UseSyslog
+Color
+#NoProgressBar
+CheckSpace
+#VerbosePkgLists
+ParallelDownloads = 4
+```
+
+#### aur不稳定源，最常用的便是 **yay**
+
+```bash
+#安装yay需要从源码编译，源码是go需要配置代理
+#启用 Go Modules 功能
+go env -w GO111MODULE=on
+# 配置 GOPROXY 环境变量，以下三选一# 1. 七牛 CDN
+go env -w  GOPROXY=https://goproxy.cn,direct
+# 2. 阿里云
+go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
+# 3. 官方
+go env -w  GOPROXY=https://goproxy.io,direct
+# **yay** 可以直接通过之前配置的 archlinuxcn 源进行安装：**
+sudo pacman -S yay** 
+```
+
+#### Rust 写的 AUR 工具 **paru**安装
+
+```bash
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+```
 
