@@ -58,6 +58,7 @@ archinstall
 
 #### hyprland桌面
 > https://cascade.moe/posts/hyprland-configure/
+> https://www.sqlsec.com/2024/09/hyprland.html
 
 > https://blog.soulter.top/posts/arch-linux-hyprland.html
 
