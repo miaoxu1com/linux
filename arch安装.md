@@ -23,8 +23,12 @@ passwd
 archinstall
 ```
 
-#### desk一定要选择gnome hyperland
-#省的给自己找很多麻烦，导致桌面环境组件缺少，桌面体验不完整
+#### 桌面环境组件
+#省的给自己找很多麻烦，导致桌面环境组件缺少，桌面体验不完整，如果要用预发布的桌面选择带桌面环境的，如果要hepyland选择安装minimal，不带桌面环境的后续自己下载hepyland，自定义桌面环境
+
+- ked
+- gnome
+- minimal
 
 
 
@@ -48,6 +52,12 @@ archinstall
 ####  添加一个新用户
 - 用于登录
 
+#### 可选包和GUI安装引导中的用户自定义安装包一样
+
+- 可以在命令行中/包名  进行匹配安装自己想要的包，然后回车就选中了自定义包，比如最小化安装没有vim 就选择安装vim
+
+
+
 #### archinstall最后步骤记得保存配置
 
 #### gnome桌面
@@ -61,6 +71,14 @@ archinstall
 > https://www.sqlsec.com/2024/09/hyprland.html
 
 > https://blog.soulter.top/posts/arch-linux-hyprland.html
+>
+> https://www.bilibili.com/opus/778159722494689457
+>
+> https://www.cnblogs.com/wcisns/p/18706911
+
+---
+
+### 这里正常不需要执行
 
 #### arch安装阶段忘记添加用户
 
@@ -152,8 +170,16 @@ grep -q "export TERMINAL=alacritty" ~/.bashrc || echo "export TERMINAL=alacritty
 #图形界面下执行$TERMINAL，打开终端配置默认终端成功
 ```
 
+### 这里正常不需要执行
+
+
+
+---
+
+
 
 #### 中文语言包
+
 - 方式1 修改文件
 ```shell
 nano /etc/locale.gen
@@ -233,6 +259,10 @@ sudo pacman -S man-db man-pages texinfo yazi fastfetch fzf eza zoxide  bash-comp
 
 #### 修改官方镜像源
 
+#注意：官方archinstall脚本安装时选择中国源，会自动配置mirrorlist，此处无须手动进行
+
+
+
 ```bash
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 sudo tee -a /etc/pacman.d/mirrorlist <<EOF
@@ -255,6 +285,10 @@ sudo reflector --country China --protocol https --sort rate --save /etc/pacman.d
 ```
 
 #### 修改**中文用户社区仓库**源
+
+#注意：这里需要手动添加
+
+
 
 ```bash
 sudo cp /etc/pacman.conf /etc/pacman.conf.bak
@@ -304,7 +338,57 @@ sudo pacman -S yay**
 ```bash
 sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git
+mkdir -p ~/.cargo/ && touch ~/.cargo/config.toml
+
+#方式1
+sudo tee ~/.cargo/config.toml <<EOF
+[source.crates-io]
+replace-with = 'ustc'
+
+[source.ustc]
+registry = "sparse+https://mirrors.ustc.edu.cn/crates.io-index/"
+EOF
+
+#方式2
+临时切换镜像（无需修改文件）
+# 使用中科大镜像临时加速
+export CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
+export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+export RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
+
+#方式3
+#在 ~/.cargo/config 中添加
+sudo tee ~/.cargo/config.toml <<EOF
+[net]
+git-fetch-with-cli = true
+EOF
+
 cd paru
+RUSTUP_UPDATE_ROOT=https://rsproxy.cn/rustup RUSTUP_DIST_SERVER=https://rsproxy.cn GOPROXY=https://goproxy.cn makepkg -si
+```
+
+#### 安装HypeLand配置文件
+
+[end-4](https://github.com/end-4)/[dots-hyprland](https://github.com/end-4/dots-hyprland)
+
+[prasanthrangan](https://github.com/prasanthrangan)/[hyprdots](https://github.com/prasanthrangan/hyprdots)
+
+#### 安装依赖工具
+
+```bash
+#yay-bin预编译的二进制包
+paru -S rysnc  yay-bin
+#aur加速aur.archlinux.org
+yay --aururl "https://aur.mirrors.ustc.edu.cn" --save
+#临时加速
+yay -S package-name --aururl "https://aur.tuna.tsinghua.edu.cn"
+#paru自定义 AUR 镜像
+paru --aururl "https://aur.tuna.tsinghua.edu.cn"
+#手动修改 AUR 软件包的 PKGBUILD
+#如果某些 AUR 软件包的源码托管在 GitHub，可以手动替换 PKGBUILD 中的 github.com 为国内镜像
+git clone https://aur.archlinux.org/package-name.git
+cd package-name
+sed -i 's/github.com/hub.fastgit.xyz/g' PKGBUILD  # 替换为 FastGit 镜像
 makepkg -si
 ```
 
