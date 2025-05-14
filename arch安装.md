@@ -75,6 +75,8 @@ archinstall
 > https://www.bilibili.com/opus/778159722494689457
 >
 > https://www.cnblogs.com/wcisns/p/18706911
+>
+> https://book.bsdcn.org/di-4-zhang-zhuo-mian-huan-jing/di-4.14-jie-an-zhuang-hyprland
 
 ---
 
