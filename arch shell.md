@@ -34,9 +34,10 @@ passwd yay
 #### 将用户加入 sudoer，编译时需要sudo权限
 #### 编辑 sudo 配置文件的命令为 visudo ，相比直接编辑配置文件，该命令会检查配置文件的正确性，因此推荐用 visudo 进行配置
 #### 但 visudo 的默认编辑器为 vi ，我使用软链接的方式解决没有 vi 的问题，操作如下
+```shell
 ln -s /usr/bin/nvim /usr/bin/vi
 ln -s /usr/bin/vim /usr/bin/vi
-
+```
 #### 然后编辑 sudo 配置
 #### 执行 visudo 命令后进入配置文件并去掉第82行的注释
 %wheel ALL=(ALL) ALL
@@ -51,8 +52,10 @@ usermod -aG wheel yay
 groups yay
 
 #### 修改用户属主和 属组
+```shell
 chmod -R +755 yay
 chwon -R yay:yay yay
+```
 #### 用代理编译aur
 #### 编译安装的工具包含在 base-devel 软件包中，因此请保证安装了 base-devel
 #### 安装过程中会从 GitHub 上克隆代码，有时会因连接不上而下载失败，因此推荐配置代理之后再进行 yay 的下载
@@ -62,6 +65,7 @@ GOPROXY=https://goproxy.cn makepkg -si
 yay -Syyu
 
 #### 安装ohmyzsh
+```shell
 方法1.pacman -S zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions
 方法2.yay -S zsh autojump zsh-syntax-highlighting zsh-autosuggestions zsh-completions
 然后从 GitHub 源码下载 oh my zsh 接管 ZSH 的管理，操作如下
@@ -138,7 +142,7 @@ p10k configure
 
 #### 快捷增强
 安装fzf fzf-tab然后在zshrc插件中启用fzf fzf-tab
-
+```
 > 1.参考：https://kaiza-hikaru-del.github.io/my_arch_experience/arch/after/yay/
 > 2.参考：https://razonyang.com/zh-hans/archlinux-guide/yay/#:~:text=1%20%24%20git%20clone%20https%3A%2F%2Faur.archlinux.org%2Fyay%202%20%24%20cd,modules%EF%BC%8C%E4%BD%86%E6%98%AF%E8%A2%AB%E5%A2%99%E4%BA%86%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E8%AE%BE%E7%BD%AE%20GOPROXY%20%E4%BB%A3%E7%90%86%E3%80%82%20%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%B3%95%20git%20clone%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%88%B0%20YAY%20%E8%BD%AF%E4%BB%B6%E5%8C%85%E9%A1%B5%E9%9D%A2%E4%B8%8B%E8%BD%BD%E5%BF%AB%E7%85%A7%E5%B9%B6%E8%A7%A3%E5%8E%8B%E3%80%82
 > 3.参考：https://cn.linux-console.net/?p=22083
