@@ -418,3 +418,14 @@ sed -i 's|https://github.com|https://gh-deno.mocn.top/https://github.com|g' PKGB
 makepkg -si
 ```
 
+#### 启动
+
+```
+nano ~/.bashrc
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+#重启系统，执行命令
+Hyprland
+```
+
+#### 配置开机启动Hyperland
+
