@@ -336,7 +336,7 @@ sudo pacman -S yay**
 #### Rust 写的 AUR 工具 **paru**安装
 
 ```bash
-sudo pacman -S --needed base-devel
+sudo pacman -S -needed --noconfirm base-devel
 git clone https://aur.archlinux.org/paru.git
 mkdir -p ~/.cargo/ && touch ~/.cargo/config.toml
 
@@ -371,7 +371,11 @@ RUSTUP_UPDATE_ROOT=https://rsproxy.cn/rustup RUSTUP_DIST_SERVER=https://rsproxy.
 
 [end-4](https://github.com/end-4)/[dots-hyprland](https://github.com/end-4/dots-hyprland)
 
-缓存放在了/home/mx/.cache/yay目录
+yay缓存放在了/home/mx/.cache/yay目录
+
+
+
+arch-packages包缓存放在/home/mx/.cache/dots-hyprland/arch-packages目录
 
 
 
@@ -380,6 +384,14 @@ RUSTUP_UPDATE_ROOT=https://rsproxy.cn/rustup RUSTUP_DIST_SERVER=https://rsproxy.
 #### 安装依赖工具
 
 ```bash
+#预置主题需要使用uv创建虚拟环境设置镜像源
+export UV_PYTHON_INSTALL_MIRROR=https://gh-deno.mocn.top/https://github.com/astral-sh/python-build-standalone/releases/download
+#临时设置pypi镜像源
+export UV_DEFAULT_INDEX="https://mirrors.aliyun.com/pypi/simple"
+mkdir ~/.config/uv/ && touch ~/.config/uv/uv.toml
+sudo tee /.config/uv/uv.toml<<EOF
+index-url="https://mirrors.cloud.tencent.com/pypi/simple/"
+EOF
 #git 加速 替换后可以手动git clone一个仓库看看速度 
 git config --global url."https://gh-deno.mocn.top/https://github.com".insteadOf "https://github.com"
 git clone https://github.com/DreamMaoMao/maomaowm.git
@@ -395,6 +407,9 @@ yay -P -g
 git clone https://aur.archlinux.org/package-name.git
 cd package-name
 #这个方法是可行的，安装过程中根据安装过程查看是那个包需要从aur仓库下载，从网页aur搜索对应仓库，查看详情页的git克隆地址手动进行克隆，克隆后手动进行替换编译文件的github地址为镜像地址，比如：
+illogical-impulse-bibata-modern-classic-bin
+ttf-rubik-vf
+
 git clone  https://aur.archlinux.org/packages/ttf-rubik-vf
 cd ttf-rubik-vf
 sed -i 's|https://github.com|https://gh-deno.mocn.top/https://github.com|g' PKGBUILD  # 替换为 FastGit 镜像
