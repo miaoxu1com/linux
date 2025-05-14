@@ -44,9 +44,8 @@ sudo sed -i 's/^#\s*%wheel\s\+ALL=(ALL:ALL)\s\+ALL/%wheel ALL=(ALL) ALL/' /etc/s
 usermod -aG wheel yay
 
 #### 可以使用以下命令查看用户是否加入 wheel 用户组
-groups yay
-
 ```shell
+groups yay
 su - yay
 pacman -S --needed base-devel git
 #注意这里不是github地址，不能在浏览器打开只能用git克隆
