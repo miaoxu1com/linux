@@ -371,24 +371,33 @@ RUSTUP_UPDATE_ROOT=https://rsproxy.cn/rustup RUSTUP_DIST_SERVER=https://rsproxy.
 
 [end-4](https://github.com/end-4)/[dots-hyprland](https://github.com/end-4/dots-hyprland)
 
+缓存放在了/home/mx/.cache/yay目录
+
+
+
 [prasanthrangan](https://github.com/prasanthrangan)/[hyprdots](https://github.com/prasanthrangan/hyprdots)
 
 #### 安装依赖工具
 
 ```bash
+#git 加速 替换后可以手动git clone一个仓库看看速度 
+git config --global url."https://gh-deno.mocn.top/https://github.com".insteadOf "https://github.com"
+git clone https://github.com/DreamMaoMao/maomaowm.git
 #yay-bin预编译的二进制包
-paru -S rysnc  yay-bin
-#aur加速aur.archlinux.org
-yay --aururl "https://aur.mirrors.ustc.edu.cn" --save
-#临时加速
-yay -S package-name --aururl "https://aur.tuna.tsinghua.edu.cn"
-#paru自定义 AUR 镜像
-paru --aururl "https://aur.tuna.tsinghua.edu.cn"
+paru -S rysnc  yay-bin less
+#恢复urrpcurl值为官方
+yay --aururl "https://aur.archlinux.org" --save
+yay --aurrpcurl "https://aur.archlinux.org/rpc" --save
+#查看yay修改的配置
+yay -P -g
 #手动修改 AUR 软件包的 PKGBUILD
 #如果某些 AUR 软件包的源码托管在 GitHub，可以手动替换 PKGBUILD 中的 github.com 为国内镜像
 git clone https://aur.archlinux.org/package-name.git
 cd package-name
-sed -i 's/github.com/hub.fastgit.xyz/g' PKGBUILD  # 替换为 FastGit 镜像
+#这个方法是可行的，安装过程中根据安装过程查看是那个包需要从aur仓库下载，从网页aur搜索对应仓库，查看详情页的git克隆地址手动进行克隆，克隆后手动进行替换编译文件的github地址为镜像地址，比如：
+git clone  https://aur.archlinux.org/packages/ttf-rubik-vf
+cd ttf-rubik-vf
+sed -i 's|https://github.com|https://gh-deno.mocn.top/https://github.com|g' PKGBUILD  # 替换为 FastGit 镜像
 makepkg -si
 ```
 
