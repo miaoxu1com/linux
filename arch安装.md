@@ -319,6 +319,24 @@ sudo pacman -Sy archlinuxcn-keyring
 sudo pacman -Syu
 ```
 
+```shell
+# Chaotic-AUR源
+sudo tee -a /etc/pacman.conf <<EOF
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
+EOF
+tail -n 10 /etc/pacman.conf  # 查看最后 10 行
+# 方式1 在线导入  外网超时
+sudo pacman -Sy chaotic-keyring
+# 方式2 手动更新
+curl -s https://mirrors.aliyun.com/chaotic-aur/chaotic-keyring.pkg.tar.zst -o chaotic-keyring.pkg.tar.zst
+sudo pacman -U chaotic-keyring.pkg.tar.zst
+
+sudo pacman -Syu
+# 查看源
+pacman -Si chaotic-aur
+```
+
 #### 开启pacman多线程
 
 ```bash
@@ -505,6 +523,9 @@ EOF
 #git 加速 替换后可以手动git clone一个仓库看看速度 ，注意这里https://gh-deno.mocn.top会经常失效 去网上搜索 github加速下载 找有效地址替换
 # 方式1
 git config --global url."https://gh-deno.mocn.top/https://github.com".insteadOf "https://github.com"
+# deb rpm 转arch系统安装包
+# PKGBUILD 和你 wget 时使用的是 HTTPS 协议，你自己 git clone 的时候使用的是 ssh 协议
+# 修改 PKGBUILD 里的 source 改成 git+ssh://git@github.com/xxxx 这样来使用 ssh 协议
 # 方式2
 yay -S --needed --noconfirm axel
 cat /etc/makepkg.conf
@@ -515,7 +536,7 @@ copy -v fake_curl_makepkg.sh /usr/bin
 'https::/usr/bin/fake_curl_makepkg.sh %o %u'
 
 git clone https://github.com/DreamMaoMao/maomaowm.git
-#yay-bin预编译的二进制包
+#yay-bin预编译的二进制包，AUR helpers
 paru -S rysnc  yay-bin less
 #恢复urrpcurl值为官方
 yay --aururl "https://aur.archlinux.org" --save
