@@ -395,6 +395,45 @@ arch-packages包缓存放在/home/mx/.cache/dots-hyprland/arch-packages目录
 
 [prasanthrangan](https://github.com/prasanthrangan)/[hyprdots](https://github.com/prasanthrangan/hyprdots)
 
+```shell
+# 脚本文件（fake_curl_makepkg.sh）
+#!/bin/bash
+
+# 参数检查
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <output_file> <url>"
+    exit 1
+fi
+
+output_file="$1"
+url="$2"
+
+# 提取域名和路径
+domain=$(echo "$url" | awk -F/ '{print $3}')
+path_after_domain=$(echo "$url" | awk -F/ '{for(i=4;i<=NF;i++) printf "/%s", $i}')
+
+case "$domain" in
+    "github.com")
+        mirror_url="https://github.com.cnpmjs.org${path_after_domain}"
+        echo "Downloading from GitHub mirror: $mirror_url"
+        if ! /usr/bin/curl -gqb "" -fLC - --retry 3 --retry-delay 3 --connect-timeout 30 -m 600 -o "$output_file" "$mirror_url"; then
+            echo "Mirror download failed, trying original URL"
+            /usr/bin/axel -n 15 -a -o "$output_file" "$url"
+        fi
+        ;;
+    *)
+        echo "Downloading using axel: $url"
+        /usr/bin/axel -n 15 -a -o "$output_file" "$url"
+        ;;
+esac
+
+# 检查最终下载结果
+if [ ! -f "$output_file" ]; then
+    echo "Download failed"
+    exit 1
+fi
+```
+
 #### 安装依赖工具
 
 ```bash
@@ -409,7 +448,15 @@ sudo tee ~/.config/uv/uv.toml<<EOF
 index-url="https://mirrors.cloud.tencent.com/pypi/simple/"
 EOF
 #git 加速 替换后可以手动git clone一个仓库看看速度 ，注意这里https://gh-deno.mocn.top会经常失效 去网上搜索 github加速下载 找有效地址替换
+# 方式1
 git config --global url."https://gh-deno.mocn.top/https://github.com".insteadOf "https://github.com"
+# 方式2
+yay -S --needed --noconfirm axel
+cat /etc/makepkg.conf
+copy -v fake_curl_makepkg.sh /usr/bin
+修改文件中
+'https::fake_curl_makepkg.sh %o %u'
+
 git clone https://github.com/DreamMaoMao/maomaowm.git
 #yay-bin预编译的二进制包
 paru -S rysnc  yay-bin less
