@@ -321,7 +321,7 @@ sudo pacman -Syu
 
 ```shell
 > https://mirrors.aliyun.com/chaotic-aur/x86_64/?spm=a2c6h.25603864.0.0.70592e66dhN2RP
-# 手动去地址验证 在地址搜索foobillard
+# 手动去地址验证 搜索firedragon
 # Chaotic-AUR源，Chaotic-AUR打包后的是.pkg.tar.zst包是预编译好的，可以直接安装
 # 方式1 在线导入  外网超时
 > https://aur.chaotic.cx/docs
