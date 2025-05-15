@@ -321,20 +321,30 @@ sudo pacman -Syu
 
 ```shell
 # Chaotic-AUR源
+# 方式1 在线导入  外网超时
+> https://aur.chaotic.cx/docs
+> https://github.com/chaotic-aur/keyring/tree/master
+sudo pacman -Sy chaotic-keyring
+# 可以手动从https://github.com/chaotic-aur/keyring/tree/master中找3056513887B78AEB的密码，搜索master找和3056513887B78AEB匹配的再去matser目录找和匹配的别名相同的密钥手动下载导入
+sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+sudo pacman-key --lsign-key 3056513887B78AEB
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+# 方式2 手动更新
+curl -s https://mirrors.aliyun.com/chaotic-aur/chaotic-keyring.pkg.tar.zst -o chaotic-keyring.pkg.tar.zst
+sudo pacman -U chaotic-keyring.pkg.tar.zst
 sudo tee -a /etc/pacman.conf <<EOF
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
 EOF
 tail -n 10 /etc/pacman.conf  # 查看最后 10 行
-# 方式1 在线导入  外网超时
-sudo pacman -Sy chaotic-keyring
-# 方式2 手动更新
-curl -s https://mirrors.aliyun.com/chaotic-aur/chaotic-keyring.pkg.tar.zst -o chaotic-keyring.pkg.tar.zst
-sudo pacman -U chaotic-keyring.pkg.tar.zst
-
+sudo touch /etc/pacman.d/chaotic-mirrorlist
+sudo tee /etc/pacman.d/chaotic-mirrorlist<<EOF
+Server = https://mirrors.aliyun.com/$repo/$arch
+EOF
 sudo pacman -Syu
-# 查看源
-pacman -Si chaotic-aur
+# 搜软件查看是否是 Chaotic-AUR 源
+pacman -Ss firedragon
 ```
 
 #### 开启pacman多线程
