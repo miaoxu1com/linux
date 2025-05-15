@@ -344,7 +344,7 @@ go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
 # 3. 官方
 go env -w  GOPROXY=https://goproxy.io,direct
 # **yay** 可以直接通过之前配置的 archlinuxcn 源进行安装：**
-sudo pacman -S yay** 
+sudo pacman -S yay
 ```
 
 #### Rust 写的 AUR 工具 **paru**安装
