@@ -405,10 +405,10 @@ export UV_PYTHON_INSTALL_MIRROR=https://gh-deno.mocn.top/https://github.com/astr
 #临时设置pypi镜像源
 export UV_DEFAULT_INDEX="https://mirrors.aliyun.com/pypi/simple"
 mkdir ~/.config/uv/ && touch ~/.config/uv/uv.toml
-sudo tee /.config/uv/uv.toml<<EOF
+sudo tee ~/.config/uv/uv.toml<<EOF
 index-url="https://mirrors.cloud.tencent.com/pypi/simple/"
 EOF
-#git 加速 替换后可以手动git clone一个仓库看看速度 
+#git 加速 替换后可以手动git clone一个仓库看看速度 ，注意这里https://gh-deno.mocn.top会经常失效 去网上搜索 github加速下载 找有效地址替换
 git config --global url."https://gh-deno.mocn.top/https://github.com".insteadOf "https://github.com"
 git clone https://github.com/DreamMaoMao/maomaowm.git
 #yay-bin预编译的二进制包
