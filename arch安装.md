@@ -320,7 +320,7 @@ sudo pacman -Syu
 ```
 
 ```shell
-# Chaotic-AUR源
+# Chaotic-AUR源，Chaotic-AUR打包后的是.pkg.tar.zst包是预编译好的，可以直接安装
 # 方式1 在线导入  外网超时
 > https://aur.chaotic.cx/docs
 > https://github.com/chaotic-aur/keyring/tree/master
