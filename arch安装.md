@@ -509,7 +509,7 @@ git config --global url."https://gh-deno.mocn.top/https://github.com".insteadOf 
 yay -S --needed --noconfirm axel
 cat /etc/makepkg.conf
 copy -v fake_curl_makepkg.sh /usr/bin
-修改文件中
+# 修改文件中,此处是脚本路径
 'https::fake_curl_makepkg.sh %o %u'
 
 git clone https://github.com/DreamMaoMao/maomaowm.git
