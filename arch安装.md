@@ -350,7 +350,7 @@ sudo pacman -S yay**
 #### Rust 写的 AUR 工具 **paru**安装
 
 ```bash
-sudo pacman -S -needed --noconfirm base-devel
+sudo pacman -S --needed --noconfirm base-devel
 git clone https://aur.archlinux.org/paru.git
 mkdir -p ~/.cargo/ && touch ~/.cargo/config.toml
 
