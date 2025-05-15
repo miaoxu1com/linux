@@ -395,6 +395,8 @@ arch-packages包缓存放在/home/mx/.cache/dots-hyprland/arch-packages目录
 
 [prasanthrangan](https://github.com/prasanthrangan)/[hyprdots](https://github.com/prasanthrangan/hyprdots)
 
+> https://bbs.archlinuxcn.org/viewtopic.php?id=12144
+
 ```shell
 # 脚本文件（fake_curl_makepkg.sh）
 #!/bin/bash
