@@ -398,7 +398,7 @@ arch-packages包缓存放在/home/mx/.cache/dots-hyprland/arch-packages目录
 > https://bbs.archlinuxcn.org/viewtopic.php?id=12144
 
 ```shell
-# 脚本文件（fake_curl_makepkg.sh）
+# 脚本文件下载文件的（fake_curl_makepkg.sh）
 #!/bin/bash
 
 # 参数检查
@@ -416,7 +416,8 @@ path_after_domain=$(echo "$url" | awk -F/ '{for(i=4;i<=NF;i++) printf "/%s", $i}
 
 case "$domain" in
     "github.com")
-        mirror_url="https://github.com.cnpmjs.org${path_after_domain}"
+# https://github.proxy.class3.fun经常失效要注意进行替换
+        mirror_url="https://github.proxy.class3.fun/https://github.com${path_after_domain}"
         echo "Downloading from GitHub mirror: $mirror_url"
         if ! /usr/bin/curl -gqb "" -fLC - --retry 3 --retry-delay 3 --connect-timeout 30 -m 600 -o "$output_file" "$mirror_url"; then
             echo "Mirror download failed, trying original URL"
@@ -434,6 +435,58 @@ if [ ! -f "$output_file" ]; then
     echo "Download failed"
     exit 1
 fi
+```
+
+```shell
+# 克隆项目的
+#!/bin/bash
+
+# Git Clone 镜像加速脚本
+# 使用方法: ./git-clone-mirror.sh [原始git仓库URL]
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <git_repository_url>"
+    exit 1
+fi
+
+original_url="$1"
+
+# 提取域名和路径
+domain=$(echo "$original_url" | awk -F/ '{print $3}')
+repo_path=$(echo "$original_url" | awk -F/ '{for(i=4;i<=NF;i++) printf "/%s", $i}' | sed 's/\.git$//')
+echo "$domain $repo_path"
+case "$domain" in
+    "github.com")
+        mirror_url="https://github.proxy.class3.fun/https://github.com${repo_path}.git"
+        echo "Cloning from GitHub mirror: $mirror_url"
+        git clone --depth 1 "$mirror_url"
+        if [ $? -ne 0 ]; then
+            echo "Mirror clone failed, trying original URL"
+            git clone --depth 1 "$original_url"
+        fi
+        ;;
+    "gitlab.com")
+        mirror_url="https://gitlab.com.cnpmjs.org${repo_path}.git"
+        echo "Cloning from GitLab mirror: $mirror_url"
+        git clone --depth 1 "$mirror_url"
+        if [ $? -ne 0 ]; then
+            echo "Mirror clone failed, trying original URL"
+            git clone --depth 1 "$original_url"
+        fi
+        ;;
+    *)
+        echo "Cloning original repository: $original_url"
+        git clone --depth 1 "$original_url"
+        ;;
+esac
+
+# 检查克隆结果
+if [ $? -ne 0 ]; then
+    echo "Clone failed"
+    exit 1
+fi
+
+echo "Clone completed successfully"
 ```
 
 #### 安装依赖工具
