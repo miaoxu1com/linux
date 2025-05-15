@@ -318,7 +318,8 @@ tail -n 10 /etc/pacman.conf  # 查看最后 10 行
 sudo pacman -Sy archlinuxcn-keyring
 sudo pacman -Syu
 ```
-
+---
+#### 不能用下载不了文件
 ```shell
 > https://mirrors.aliyun.com/chaotic-aur/x86_64/?spm=a2c6h.25603864.0.0.70592e66dhN2RP
 # 手动去地址验证 搜索firedragon
@@ -348,7 +349,8 @@ sudo pacman -Syu
 # 搜软件查看是否是 Chaotic-AUR 源
 pacman -Ss firedragon
 ```
-
+#### 不能用下载不了文件
+---
 #### 开启pacman多线程
 
 ```bash
