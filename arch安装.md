@@ -77,7 +77,7 @@ archinstall
 
 #### wayland桌面
 > https://a-wing.top/linux/2022/01/03/translate_wayland
-
+> https://blog.fangjiahui.me/posts/2024-02-20-arch-wayland-sway-install-fcitx5/
 #### hyprland桌面
 > https://cascade.moe/posts/hyprland-configure/
 > https://www.sqlsec.com/2024/09/hyprland.html
