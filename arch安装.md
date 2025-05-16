@@ -124,8 +124,8 @@ passwd 用户名  # 设置该用户的密码（如 passwd archuser）
 EDITOR=nano visudo
 
 找到 # %wheel ALL=(ALL:ALL) ALL，去掉 # 取消注释，保存退出（Ctrl+O → Enter → Ctrl+X）
-sudo sed -i 's/^# %wheel ALL=(ALL:ALL) ALL$/%wheel ALL=(ALL) ALL/' /etc/sudoers
-sudo grep -E '^%wheel ALL=(ALL:ALL) ALL' /etc/sudoers
+sudo sed -i '/# %wheel ALL=(ALL:ALL) ALL/s/^# //' /etc/sudoers
+sudo grep '%wheel ALL=(ALL:ALL) ALL' /etc/sudoers
 如果输出 %wheel ALL=(ALL:ALL) ALL，说明修改成功。
 ```
 ---
