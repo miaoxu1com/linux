@@ -585,4 +585,17 @@ Hyprland
 #### 配置开机启动Hyperland
 
 #### 远程桌面
+#### 安装maomaodw
+- 方式1
+yay -S maomaowm-git
+- 方式2 手动执行多个
+yay -S wlroots-0.19-git
+git clone https://github.com/DreamMaoMao/maomaowm.git
+cd maomaowm
+meson build -Dprefix=/usr
+sudo ninja -C build install
+
+- 会去下载gitlab仓库很慢https://gitlab.freedesktop.org/wlroots/wlroots.git/
+- 可以去gitee搜速wlroots加速下载 https://gitee.com/DreamMaoMao/wlroots  
+
 
