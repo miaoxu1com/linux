@@ -90,6 +90,9 @@ archinstall
 > https://www.cnblogs.com/wcisns/p/18706911
 >
 > https://book.bsdcn.org/di-4-zhang-zhuo-mian-huan-jing/di-4.14-jie-an-zhuang-hyprland
+> https://lixuannan.github.io/posts/34336.html
+> https://tea-in-the-snow.github.io/p/hyprland-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/
+> https://xlog.lxip.top/01-hyprlandmd?locale=zh
 
 ---
 
