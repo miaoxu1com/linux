@@ -42,6 +42,16 @@ archinstall
 - gnome
 - minimal
 
+#### 键盘选择
+
+- 键盘如果选择en会导致，无法输入- 符号
+- 键盘需要选择uk或us布局
+- 安装系统后可以修改/etc/vconsoles.conf 文件设置为uk或us
+
+#### 设置语言是zh_CN需要安装对应字体，否则乱码
+- 安装noto-fonts-cjk  ：google开源字体
+
+
 
 
 
